@@ -13,10 +13,9 @@ $sql = "INSERT INTO usuarios (nome_completo, email, nome_de_usuario, senha) VALU
 
 if (mysqli_query($conn, $sql)) {
     echo "Cadastro realizado com sucesso!";
-    header('Location: login.php');
+    header('Location: index.php');
 } else {
     echo "Erro ao realizar cadastro: " . mysqli_error($conn);
 }
 
 $conn->close();
-?>

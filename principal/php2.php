@@ -1,25 +1,25 @@
 <?php
-$preco = $_POST["preco"];
-$nome = $_POST["nome"];
+$user = $_POST["username"];
+$senha = $_POST["password"];
 
 // Verifica se o campo de preço foi preenchido
-if (!empty($preco) && !empty($nome)) {
+if (!empty($user) && !empty($senha)) {
   // Conecta ao banco de dados
   $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
-  
+
   // Executa a consulta SQL
-  $sql = "SELECT * FROM produtos WHERE preco > $preco AND nome LIKE '$nome%'";
+  $sql = "SELECT * FROM usuarios WHERE nome_de_usuario = '$user'";
   $result = $conn->query($sql);
 
   // Exibe os resultados
   while ($row = $result->fetch_array()) {
-    echo "ID: " . $row["id"] . "<br>";
-    echo "Nome: " . $row["nome"] . "<br>";
-    echo "Preço: " . $row["preco"] . "<br>";
+    if ($row["senha"] == $senha) {
+      header('Location: pesquisa.php');
+    } else {
+      echo 'ERROR';
+    }
   }
 
   // Fecha a conexão com o banco de dados
   $conn->close();
 }
-
-?>

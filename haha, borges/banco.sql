@@ -6,4 +6,4 @@ CREATE TABLE cartuchos (
 
 );
 
-ALTER TABLE cartuchos ADD COLUMN id_usuario INT NOT NULL; (nao sei se isso é fora ou dentro, dps vc se vira)
+ALTER TABLE cartuchos ADD COLUMN id_usuario INT NOT NULL; -- (nao sei se isso é fora ou dentro, dps vc se vira)
