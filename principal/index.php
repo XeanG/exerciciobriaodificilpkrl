@@ -27,10 +27,8 @@
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">
-        <input class="btn btn-outline-primary" type="button" value="Criar uma conta" onclick="window.location.href = 'registro.php';">
-      </div>
-      <div class="mb-3 d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Entrar">
+        <input class="btn btn-outline-primary" type="button" value="Criar uma conta" onclick="window.location.href = 'registro.php';">
       </div>
     </form>
   </div>
