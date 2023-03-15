@@ -26,19 +26,19 @@
     <h1 class="text-center">Adicionar cartucho</h1>
     <form action="adicionar_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="nome_cartucho_cd" class="col-sm-2 col-form-label w-25">Nome do cartucho/CD:</label>
+        <label for="nome_cartucho_cd" class="text-end col-sm-2 col-form-label w-25">Cartucho/CD:</label>
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="sistema" class="col-sm-2 col-form-label w-25">Sistema:</label>
+        <label for="sistema" class="text-end col-sm-2 col-form-label w-25">Sistema:</label>
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="sistema" name="sistema">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="tela" class="col-sm-2 col-form-label w-25">Tela:</label>
+        <label for="tela" class="text-end col-sm-2 col-form-label w-25">Tela:</label>
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="tela" name="tela">
         </div>
