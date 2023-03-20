@@ -6,22 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/css/style.css">
   <title>Cartuchos</title>
   <?php
-    session_start();
-    if(!isset ($_SESSION['username']) == true) {
-      header('location:index.php');
-    }
+  session_start();
+  if (!isset($_SESSION['username']) == true) {
+    header('location:index.php');
+  }
 
-    $logado = $_SESSION['login'];
+  $logado = $_SESSION['login'];
   ?>
 </head>
 
 <body>
   <div class="container position-absolute top-50 start-50 translate-middle w-50">
-  <h1 class="text-center">Cartuchos</h1>
-  <?php
+    <h1 class="text-center">Cartuchos</h1>
+    <?php
     // Conexão com o banco de dados
     $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
 
@@ -47,8 +48,8 @@
           </tr>
         </thead>
         <tbody>";
-      while($row = $result->fetch_assoc()) {
-        echo "<tr><th scope='row'>".$row["id"]."</th><td>".$row["nome_cartucho_cd"]."</td><td>".$row["sistema"]."</td><td>".$row["tela"]."</td></tr>";
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td></tr>";
       }
       echo "</tbody></table>";
     } else {
@@ -56,9 +57,9 @@
     }
 
     $conn->close();
-?>
+    ?>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>
