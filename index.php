@@ -12,19 +12,19 @@
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Login</h1>
     <form method="POST" action="login.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="username" class="text-end col-sm-2 col-form-label w-25">Usuário:</label>
-        <div class="col-sm-10 w-50">
-          <input type="text" class="form-control" id="username" name="username">
+        <!--<label for="username" class="text-end col-sm-2 col-form-label w-25">Usuário:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Usuário">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="password" class="text-end col-sm-2 col-form-label w-25">Senha:</label>
-        <div class="col-sm-3 w-50 input-group">
-          <input type="password" class="form-control" id="password" name="password">
+        <!--<label for="password" class="text-end col-sm-2 col-form-label w-25">Senha:</label>-->
+        <div class="col-sm-3 w-75 input-group">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" onclick="mostra_senha('password')">
               <i class="bi bi-eye-fill"></i>

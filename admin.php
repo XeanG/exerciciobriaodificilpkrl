@@ -12,25 +12,25 @@
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Adicionar cartucho</h1>
     <form action="adicionar_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="nome_cartucho_cd" class="text-end col-sm-2 col-form-label w-25">Cartucho/CD:</label>
+        <!--<label for="nome_cartucho_cd" class="text-end col-sm-2 col-form-label w-25">Cartucho/CD:</label>-->
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd">
+          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="sistema" class="text-end col-sm-2 col-form-label w-25">Sistema:</label>
+        <!--<label for="sistema" class="text-end col-sm-2 col-form-label w-25">Sistema:</label>-->
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="sistema" name="sistema">
+          <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="tela" class="text-end col-sm-2 col-form-label w-25">Tela:</label>
+        <!--<label for="tela" class="text-end col-sm-2 col-form-label w-25">Tela:</label>-->
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="tela" name="tela">
+          <input type="text" class="form-control" id="tela" name="tela" placeholder="Tela">
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">

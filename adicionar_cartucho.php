@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <?php
     $nome_cartucho_cd = $_POST['nome_cartucho_cd'];
     $sistema = $_POST['sistema'];

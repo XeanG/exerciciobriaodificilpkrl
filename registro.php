@@ -12,31 +12,31 @@
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Cadastro</h1>
     <form method="POST" action="registrar.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="nome_completo" class="text-end col-sm-2 col-form-label w-25">Nome completo:</label>
-        <div class="col-sm-10 w-50">
-          <input type="text" class="form-control" id="nome_completo" name="nome_completo">
+        <!--<label for="nome_completo" class="text-end col-sm-2 col-form-label w-25">Nome completo:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="nome_completo" name="nome_completo" placeholder="Nome completo">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="email" class="text-end col-sm-2 col-form-label w-25">Endereço de e-mail:</label>
-        <div class="col-sm-10 w-50">
-          <input type="text" class="form-control" id="email" name="email">
+        <!--<label for="email" class="text-end col-sm-2 col-form-label w-25">Endereço de e-mail:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Endereço de e-mail">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="nome_de_usuario" class="text-end col-sm-2 col-form-label w-25">Nome de usuário:</label>
-        <div class="col-sm-10 w-50">
-          <input type="text" class="form-control" id="nome_de_usuario" name="nome_de_usuario">
+        <!--<label for="nome_de_usuario" class="text-end col-sm-2 col-form-label w-25">Nome de usuário:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="nome_de_usuario" name="nome_de_usuario" placeholder="Nome de usuário">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="senha" class="text-end col-sm-2 col-form-label w-25">Senha:</label>
-        <div class="col-sm-10 w-50 input-group">
-          <input type="password" class="form-control" id="senha" name="senha">
+        <!--<label for="senha" class="text-end col-sm-2 col-form-label w-25">Senha:</label>-->
+        <div class="col-sm-10 w-75 input-group">
+          <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" onclick="mostra_senha('senha')">
               <i class="bi bi-eye-fill"></i>

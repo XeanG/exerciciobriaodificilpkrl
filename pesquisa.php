@@ -12,19 +12,19 @@
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Pesquisa</h1>
     <form method="POST" action="pesquisar.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="preco" class="text-end col-sm-2 col-form-label w-25">Preço maior que:</label>
-        <div class="col-sm-10 w-50">
-          <input type="number" class="form-control" id="preco" name="preco" step="0.01">
+        <!--<label for="preco" class="text-end col-sm-2 col-form-label w-25">Preço maior que:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="number" class="form-control" id="preco" name="preco" step="0.01" placeholder="Preço mínimo">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <label for="nome" class="text-end col-sm-2 col-form-label w-25">Nome do produto:</label>
-        <div class="col-sm-10 w-50">
-          <input type="text" class="form-control" id="nome" name="nome">
+        <!--<label for="nome" class="text-end col-sm-2 col-form-label w-25">Nome do produto:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do produto">
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">
