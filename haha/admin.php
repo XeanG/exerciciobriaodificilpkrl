@@ -1,49 +1,56 @@
-<?php
-// Conexão com o banco de dados
-$servername = "localhost";
-$username = "seu_usuario";
-$password = "sua_senha";
-$dbname = "nome_do_seu_banco_de_dados";
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <!-- o estilo naoera pra ta assim mas preguiça d corrigir o erro do link q tentei fazer com o outro arquivo-->
+  <style>
+    .container {
+      border-width: 0.1rem;
+      border-style: solid;
+      border-radius: 1rem;
+    }
 
-// Checa a conexão
-if ($conn->connect_error) {
-  die("Conexão falhou: " . $conn->connect_error);
-}
+    .form-control {
+      border-color: black;
+    }
+  </style>
+  <title>Cartucho</title>
+</head>
 
-// Consulta SQL para selecionar quem possui cada cartucho
-$sql_cartuchos = "SELECT c.id, c.nome_cartucho_cd, c.sistema, c.tela, u.nome_usuario FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id";
-$result_cartuchos = $conn->query($sql_cartuchos);
+<body>
+  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+    <h1 class="text-center">Adicionar cartucho</h1>
+    <form action="adicionar_cartucho.php" method="post">
+      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+        <label for="nome_cartucho_cd" class="text-end col-sm-2 col-form-label w-25">Cartucho/CD:</label>
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd">
+        </div>
+      </div>
+      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+        <label for="sistema" class="text-end col-sm-2 col-form-label w-25">Sistema:</label>
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="sistema" name="sistema">
+        </div>
+      </div>
+      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+        <label for="tela" class="text-end col-sm-2 col-form-label w-25">Tela:</label>
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="tela" name="tela">
+        </div>
+      </div>
+      <div class="mb-3 d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Adicionar">
+        <input class="btn btn-outline-primary" type="button" value="Painel do Administrador" onclick="window.location.href = 'admin.php';">
+      </div>
+    </form>
+  </div>
 
-// Consulta SQL para selecionar o cartucho mais antigo e a quem pertence
-$sql_antigo = "SELECT c.nome_cartucho_cd, u.nome_usuario, c.sistema, c.tela, MIN(c.data_lancamento) AS data_lancamento FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id";
-$result_antigo = $conn->query($sql_antigo);
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
 
-// Consulta SQL para contar o número de cartuchos para uma plataforma específica
-$sql_contagem = "SELECT COUNT(*) AS num_cartuchos FROM cartuchos WHERE sistema = 'sua_plataforma_especifica'";
-$result_contagem = $conn->query($sql_contagem);
-
-// Exibe as informações
-echo "<h2>Quem possui cada cartucho:</h2>";
-if ($result_cartuchos->num_rows > 0) {
-  echo "<table><tr><th>ID</th><th>Nome do cartucho/CD</th><th>Sistema</th><th>Tela</th><th>Nome do usuário</th></tr>";
-  while($row = $result_cartuchos->fetch_assoc()) {
-    echo "<tr><td>".$row["id"]."</td><td>".$row["nome_cartucho_cd"]."</td><td>".$row["sistema"]."</td><td>".$row["tela"]."</td><td>".$row["nome_usuario"]."</td></tr>";
-  }
-  echo "</table>";
-} else {
-  echo "Nenhum cartucho encontrado.";
-}
-
-echo "<h2>Cartucho mais antigo:</h2>";
-if ($result_antigo->num_rows > 0) {
-  $row = $result_antigo->fetch_assoc();
-  echo "O cartucho mais antigo é '".$row["nome_cartucho_cd"]."' para o sistema '".$row["sistema"]."', lançado em ".$row["data_lancamento"]." e pertence a ".$row["nome_usuario"].".";
-} else {
-  echo "Nenhum cartucho encontrado para a plataforma 'sua_plataforma_especifica'.";
-}
-
-// Fecha a conexão
-$conn->close();
-?>
+</html>

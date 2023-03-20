@@ -13,7 +13,7 @@
 <body>
   <div class="container position-absolute top-50 start-50 translate-middle w-50">
     <h1 class="text-center">Pesquisa</h1>
-    <form method="POST" action="search.php">
+    <form method="POST" action="pesuisar.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <label for="preco" class="text-end col-sm-2 col-form-label w-25">Preço maior que:</label>
         <div class="col-sm-10 w-75">
