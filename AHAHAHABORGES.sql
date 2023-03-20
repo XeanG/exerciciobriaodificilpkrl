@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS produtos;
 CREATE TABLE produtos (
-    id INT PRIMARY KEY,
-    nome VARCHAR(50),
-    preco DECIMAL(10, 2)
+  id INT PRIMARY KEY,
+  nome VARCHAR(50),
+  preco DECIMAL(10, 2)
 );
 
 INSERT INTO produtos (id, nome, preco) VALUES
@@ -33,4 +33,4 @@ CREATE TABLE cartuchos (
   sistema VARCHAR(255),
   tela VARCHAR(255),
   id_usuario INT
-);w
+);
