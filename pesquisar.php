@@ -1,4 +1,5 @@
 <?php
+session_start();
 $preco = $_POST["preco"];
 $nome = $_POST["nome"];
 

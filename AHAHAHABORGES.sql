@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS produtos;
 CREATE TABLE produtos (
-  id INT PRIMARY KEY,
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(50),
   preco DECIMAL(10, 2)
 );
@@ -23,14 +23,16 @@ CREATE TABLE usuarios (
   nome_completo VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   nome_de_usuario VARCHAR(255) NOT NULL,
-  senha VARCHAR(255) NOT NULL
+  senha VARCHAR(255) NOT NULL,
+  adm BOOLEAN NOT NULL
 );
 
 DROP TABLE IF EXISTS cartuchos;
 CREATE TABLE cartuchos (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
   nome_cartucho_cd VARCHAR(255) NOT NULL,
-  sistema VARCHAR(255),
-  tela VARCHAR(255),
-  id_usuario INT
+  ano INT(4) UNSIGNED NOT NULL,
+  sistema VARCHAR(255) NOT NULL,
+  tela VARCHAR(255) NOT NULL,
+  id_usuario INT NOT NULL
 );

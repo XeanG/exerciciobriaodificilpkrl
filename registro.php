@@ -9,10 +9,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/css/style.css">
   <title>Cadastro</title>
+  <?php
+  session_start();
+  if (isset($_SESSION['username']) == true) {
+    echo "<div class='container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row'>
+    <h1 class='text-center'>Erro</h1><p>Você está logado.</p>";
+    header('location:cartucho.php');
+  }
+  ?>
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Cadastro</h1>
     <form method="POST" action="registrar.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">

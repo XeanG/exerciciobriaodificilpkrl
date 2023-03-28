@@ -4,7 +4,7 @@ session_start();
 $user = $_POST["username"];
 $senha = $_POST["password"];
 
-if (!empty($user) && !empty($hash)) {
+if (!empty($user) && !empty($senha)) {
   // Conexão com o banco de dados
   $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
 
@@ -19,12 +19,25 @@ if (!empty($user) && !empty($hash)) {
 
   // Exibe os resultados
   while ($row = $result->fetch_assoc()) {
-    $verify = password_verify($senha, $row["senha"]);
-    if ($verify) {
-      $_SESSION["username"] = $user;
-      header('Location: cartucho.php');
+    if ($row['adm'] != '1') {
+      $verify = password_verify($senha, $row["senha"]);
+      if ($verify) {
+        $_SESSION["username"] = $user;
+        $_SESSION["admin"] = 0;
+        echo $row["id"];
+        $_SESSION['id'] = $row['id'];
+        echo $_SESSION['id'];
+        header('Location: cartucho.php');
+      } else {
+        header('Location: index.php');
+      }
     } else {
-      echo 'ERROR';
+      if ($senha == $row["senha"]) {
+        $_SESSION["username"] = $user;
+        $_SESSION["admin"] = 1;
+        $_SESSION["id"] = $row['id'];
+        header('Location: admin.php');
+      }
     }
   }
 

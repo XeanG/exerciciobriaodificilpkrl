@@ -9,33 +9,57 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/css/style.css">
   <title>Cartucho</title>
+  <?php
+  session_start();
+  if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
+    header('location:index.php');
+  }
+  ?>
 </head>
 
 <body>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
-    <h1 class="text-center">Adicionar cartucho</h1>
-    <form action="adicionar_cartucho.php" method="post">
+<div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
+      <div class="navbar-nav py-0">
+        <a href="index.php" class="nav-item nav-link">Login</a>
+        <a href="admin.php" class="nav-item nav-link active">Administrador</a>
+        <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
+        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Seus cartuchos</a>
+        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
+        <a href="logout.php" class="nav-item nav-link">Sair</a>
+      </div>
+    </nav>
+  </div>
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row">
+    <h1 class="text-center">Painel do Administrador</h1>
+    <form action="dono_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="nome_cartucho_cd" class="text-end col-sm-2 col-form-label w-25">Cartucho/CD:</label>-->
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
         </div>
+      </div>    
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Pesquisar dono">
       </div>
+    </form>
+    <form action="cartucho_antigo.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="sistema" class="text-end col-sm-2 col-form-label w-25">Sistema:</label>-->
+        <div class="col-sm-10 w-75">
+          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
+        </div>
+      </div>    
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Pesquisar cartucho mais antigo">
+      </div>
+    </form>
+    <form action="numero_jogos.php" method="post">
+      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema">
         </div>
-      </div>
-      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="tela" class="text-end col-sm-2 col-form-label w-25">Tela:</label>-->
-        <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="tela" name="tela" placeholder="Tela">
-        </div>
-      </div>
-      <div class="mb-3 d-flex justify-content-evenly align-items-center">
-        <input class="btn btn-outline-primary" type="submit" value="Adicionar">
-        <input class="btn btn-outline-primary" type="button" value="Painel do Administrador" onclick="window.location.href = 'admin.php';">
+      </div>    
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Pesquisar número de jogos">
       </div>
     </form>
   </div>
