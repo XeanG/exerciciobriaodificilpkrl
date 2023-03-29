@@ -40,7 +40,10 @@
     $nome_cartucho_cd = $_POST['nome_cartucho_cd'];
     $ano = $_POST['ano'];
     $sistema = $_POST['sistema'];
-    $tela = $_POST['tela'];
+    $arquivo = $_FILES['tela']["tmp_name"];
+    $tamanho = $_FILES['tela']["size"];
+    $tipo = $_FILES['tela']["type"];
+    $nome = $_FILES['tela']["name"];
     $id_usuario = $_SESSION['id'];
 
     //Conexão com o banco de dados
@@ -52,7 +55,7 @@
     }
 
     // Insere os dados no banco de dados
-    $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, tela, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$tela', '$id_usuario')";
+    $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$id_usuario')";
     $result = $conn->query($sql);
 
     if ($result === true) {

@@ -60,7 +60,7 @@
     </h1>
     <?php
     // Consulta SQL para selecionar os cartuchos da plataforma
-    $sql_cartuchos = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, c.tela, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE c.sistema = '$sistema'";
+    $sql_cartuchos = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE c.sistema = '$sistema'";
     $result = $conn->query($sql_cartuchos);
 
     if ($result->num_rows > 0) {
@@ -77,7 +77,7 @@
         </thead>
         <tbody>";
       while ($row = $result->fetch_assoc()) {
-        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
       }
       echo "</tbody></table>";
     } else {

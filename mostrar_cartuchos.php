@@ -51,9 +51,9 @@
     }
 
     // Consulta SQL para selecionar todos os cartuchos
-    $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, c.tela, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
+    $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
     if ($adm != '1') {
-      $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, c.tela FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
+      $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
     }
     $result = $conn->query($sql);
 
@@ -88,9 +88,9 @@
       }
       while ($row = $result->fetch_assoc()) {
         if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td></tr>";
         } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
         }
       }
       echo "</tbody></table>";

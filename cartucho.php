@@ -39,7 +39,7 @@
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Adicionar cartucho</h1>
-    <form action="adicionar_cartucho.php" method="post">
+    <form enctype="multipart/form-data" action="adicionar_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
@@ -57,7 +57,7 @@
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="tela" name="tela" placeholder="Tela">
+          <input type="file" class="form-control" id="tela" name="tela" placeholder="Tela">
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">
