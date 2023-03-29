@@ -12,6 +12,7 @@
   <?php
   session_start();
   if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
+    session_destroy();
     header('location:index.php');
   }
   ?>
@@ -19,7 +20,7 @@
 
 <?php
 // Conexão com o banco de dados
-$conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+$conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
 
 // Checa a conexão
 if ($conn->connect_error) {
@@ -42,8 +43,8 @@ $result_contagem = $conn->query($sql_contagem);
 echo "<h2>Quem possui cada cartucho:</h2>";
 if ($result_cartuchos->num_rows > 0) {
   echo "<table><tr><th>ID</th><th>Nome do cartucho/CD</th><th>Sistema</th><th>Tela</th><th>Nome do usuário</th></tr>";
-  while($row = $result_cartuchos->fetch_assoc()) {
-    echo "<tr><td>".$row["id"]."</td><td>".$row["nome_cartucho_cd"]."</td><td>".$row["sistema"]."</td><td>".$row["tela"]."</td><td>".$row["nome_usuario"]."</td></tr>";
+  while ($row = $result_cartuchos->fetch_assoc()) {
+    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td><td>" . $row["nome_usuario"] . "</td></tr>";
   }
   echo "</table>";
 } else {
@@ -53,7 +54,7 @@ if ($result_cartuchos->num_rows > 0) {
 echo "<h2>Cartucho mais antigo:</h2>";
 if ($result_antigo->num_rows > 0) {
   $row = $result_antigo->fetch_assoc();
-  echo "O cartucho mais antigo é '".$row["nome_cartucho_cd"]."' para o sistema '".$row["sistema"]."', lançado em ".$row["data_lancamento"]." e pertence a ".$row["nome_usuario"].".";
+  echo "O cartucho mais antigo é '" . $row["nome_cartucho_cd"] . "' para o sistema '" . $row["sistema"] . "', lançado em " . $row["data_lancamento"] . " e pertence a " . $row["nome_usuario"] . ".";
 } else {
   echo "Nenhum cartucho encontrado para a plataforma 'sua_plataforma_especifica'.";
 }

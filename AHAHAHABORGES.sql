@@ -27,6 +27,8 @@ CREATE TABLE usuarios (
   adm BOOLEAN NOT NULL
 );
 
+INSERT INTO usuarios (nome_completo, email, nome_de_usuario, senha, adm) VALUES ('admin', '', 'admin', 'admin123', '1');
+
 DROP TABLE IF EXISTS cartuchos;
 CREATE TABLE cartuchos (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,

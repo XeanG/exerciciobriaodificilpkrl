@@ -6,13 +6,13 @@ $nome = $_POST["nome"];
 // Verifica se o campo de preço foi preenchido
 if (!empty($preco) && !empty($nome)) {
   // Conexão com o banco de dados
-  $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+  $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
 
   // Checa a conexão
   if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
   }
-  
+
   // Executa a consulta SQL
   $sql = "SELECT * FROM produtos WHERE preco > $preco AND nome LIKE '$nome%'";
   $result = $conn->query($sql);

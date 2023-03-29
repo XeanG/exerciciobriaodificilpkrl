@@ -12,7 +12,7 @@
   <?php
   session_start();
   if (isset($_SESSION['username']) == true) {
-    echo "<div class='container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row'>
+    echo "<div class='container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row'>
     <h1 class='text-center'>Erro</h1><p>Você está logado.</p>";
     header('location:cartucho.php');
   }
@@ -24,15 +24,11 @@
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
       <div class="navbar-nav py-0">
         <a href="index.php" class="nav-item nav-link active">Login</a>
-        <a href="admin.php" class="nav-item nav-link">Administrador</a>
-        <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
-        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Seus cartuchos</a>
-        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
-        <a href="logout.php" class="nav-item nav-link">Sair</a>
+        <a href="registro.php" class="nav-item nav-link">Cadastro</a>
       </div>
     </nav>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Login</h1>
     <form method="POST" action="login.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">

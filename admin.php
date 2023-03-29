@@ -12,44 +12,38 @@
   <?php
   session_start();
   if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
+    session_destroy();
     header('location:index.php');
   }
   ?>
 </head>
 
 <body>
-<div class="container-xxl position-relative p-0">
+  <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
       <div class="navbar-nav py-0">
-        <a href="index.php" class="nav-item nav-link">Login</a>
         <a href="admin.php" class="nav-item nav-link active">Administrador</a>
         <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
-        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Seus cartuchos</a>
-        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
+        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Cartuchos</a>
         <a href="logout.php" class="nav-item nav-link">Sair</a>
       </div>
     </nav>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-50 d-flex align-items-evenly justify-items-center row">
+  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Painel do Administrador</h1>
+    <form action="cartucho_antigo.php" method="post">
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Pesquisar cartucho mais antigo">
+      </div>
+    </form>
     <form action="dono_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
         </div>
-      </div>    
+      </div>
       <div class="d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Pesquisar dono">
-      </div>
-    </form>
-    <form action="cartucho_antigo.php" method="post">
-      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
-        </div>
-      </div>    
-      <div class="d-flex justify-content-evenly align-items-center">
-        <input class="btn btn-outline-primary" type="submit" value="Pesquisar cartucho mais antigo">
       </div>
     </form>
     <form action="numero_jogos.php" method="post">
@@ -57,7 +51,7 @@
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema">
         </div>
-      </div>    
+      </div>
       <div class="d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Pesquisar número de jogos">
       </div>

@@ -12,6 +12,7 @@
   <?php
   session_start();
   if (!isset($_SESSION['username']) == true) {
+    session_destroy();
     header('location:index.php');
   }
   ?>
@@ -21,12 +22,18 @@
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
       <div class="navbar-nav py-0">
-        <a href="index.php" class="nav-item nav-link">Login</a>
-        <a href="admin.php" class="nav-item nav-link">Administrador</a>
-        <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
-        <a href="mostrar_cartuchos.php" class="nav-item nav-link active">Seus cartuchos</a>
-        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
-        <a href="logout.php" class="nav-item nav-link">Sair</a>
+        <?php
+        if ($_SESSION["admin"] == 1) {
+          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
+          <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
+          <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Cartuchos</a>
+          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
+        } else {
+          echo "<a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
+          <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Seus cartuchos</a>
+          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
+        }
+        ?>
       </div>
     </nav>
   </div>
@@ -36,7 +43,7 @@
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];
     // Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+    $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
 
     // Checa a conexão
     if ($conn->connect_error) {
@@ -44,15 +51,16 @@
     }
 
     // Consulta SQL para selecionar todos os cartuchos
-    $sql = "SELECT * FROM cartuchos";
+    $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, c.tela, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
     if ($adm != '1') {
-      $sql = "SELECT * FROM cartuchos WHERE id_usuario = '$id_usuario'";  
+      $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, c.tela FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
     }
     $result = $conn->query($sql);
 
     // Checa se há algum resultado
     if ($result->num_rows > 0) {
       // Exibe cada cartucho em uma tabela
+      if ($adm != '1') {
       echo "<table class='table'>
         <thead>
           <tr class='table-dark'>
@@ -61,12 +69,29 @@
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
             <th scope='col'>Tela</th>
-            <th scope='col'>Usuário</th>
           </tr>
         </thead>
         <tbody>";
+      } else {
+        echo "<table class='table'>
+          <thead>
+            <tr class='table-dark'>
+              <th scope='col'>ID</th>
+              <th scope='col'>Nome do cartucho/CD</th>
+              <th scope='col'>Ano</th>
+              <th scope='col'>Sistema</th>
+              <th scope='col'>Tela</th>
+              <th scope='col'>Usuário</th>
+            </tr>
+          </thead>
+          <tbody>";
+      }
       while ($row = $result->fetch_assoc()) {
-        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td><td>" . $row["id_usuario"] . "</td></tr>";
+        if ($adm != '1') {
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td></tr>";
+        } else {
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["tela"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+        }
       }
       echo "</tbody></table>";
     } else {
