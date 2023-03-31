@@ -62,7 +62,6 @@
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Adicionar">
-        <input class="btn btn-outline-primary" type="button" value="Painel do Administrador" onclick="window.location.href = 'admin.php';">
       </div>
     </form>
   </div>

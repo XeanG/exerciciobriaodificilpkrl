@@ -43,8 +43,7 @@
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];
     // Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
-
+    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
@@ -80,17 +79,17 @@
               <th scope='col'>Nome do cartucho/CD</th>
               <th scope='col'>Ano</th>
               <th scope='col'>Sistema</th>
-              <th scope='col'>Tela</th>
               <th scope='col'>Usuário</th>
+              <th scope='col'>Tela</th>
             </tr>
           </thead>
           <tbody>";
       }
       while ($row = $result->fetch_assoc()) {
         if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td></tr>";
         } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td></tr>";
         }
       }
       echo "</tbody></table>";

@@ -6,8 +6,7 @@ $senha = $_POST["password"];
 
 if (!empty($user) && !empty($senha)) {
   // Conexão com o banco de dados
-  $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
-
+  $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
   // Checa a conexão
   if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
@@ -24,9 +23,7 @@ if (!empty($user) && !empty($senha)) {
       if ($verify) {
         $_SESSION["username"] = $user;
         $_SESSION["admin"] = 0;
-        echo $row["id"];
         $_SESSION['id'] = $row['id'];
-        echo $_SESSION['id'];
         header('Location: cartucho.php');
       } else {
         header('Location: index.php');
@@ -37,6 +34,8 @@ if (!empty($user) && !empty($senha)) {
         $_SESSION["admin"] = 1;
         $_SESSION["id"] = $row['id'];
         header('Location: admin.php');
+      } else {
+        header('Location: index.php');
       }
     }
   }

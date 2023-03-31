@@ -35,8 +35,7 @@
       $sistema = $_POST["sistema"];
 
       // Conexão com o banco de dados
-      $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
-
+      $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
       // Checa a conexão
       if ($conn->connect_error) {
         die("Conexão falhou: " . $conn->connect_error);
@@ -71,8 +70,8 @@
             <th scope='col'>Nome do cartucho/CD</th>
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
-            <th scope='col'>Tela</th>
             <th scope='col'>Usuário</th>
+            <th scope='col'>Tela</th>
           </tr>
         </thead>
         <tbody>";

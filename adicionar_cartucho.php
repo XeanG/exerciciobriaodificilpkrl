@@ -40,26 +40,38 @@
     $nome_cartucho_cd = $_POST['nome_cartucho_cd'];
     $ano = $_POST['ano'];
     $sistema = $_POST['sistema'];
-    $arquivo = $_FILES['tela']["tmp_name"];
+    $imagem = $_FILES['tela']["tmp_name"];
     $tamanho = $_FILES['tela']["size"];
     $tipo = $_FILES['tela']["type"];
     $nome = $_FILES['tela']["name"];
     $id_usuario = $_SESSION['id'];
+    $id_cartucho;
 
     //Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
-
+    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
     // Insere os dados no banco de dados
+    
     $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$id_usuario')";
     $result = $conn->query($sql);
 
-    if ($result === true) {
+    $select_id = "SELECT MAX(id) AS id FROM cartuchos";
+    $select = $conn->query($select_id);
+
+    while ($row = $select->fetch_assoc()) {
+      $id_cartucho = $row['id'];
+    }
+
+    $query = "INSERT INTO arquivos (nome, tipo, tamanho, imagem, id_cartucho) VALUES ('$nome', '$tipo', '$tamanho', '$imagem', '$id_cartucho')";
+    $stmt = $conn->query($query);
+
+    if ($stmt === true && $result === true) {
       echo "<h2>Novo cartucho adicionado com sucesso!</h2>";
+      echo "<a href='exibir_imagem.php?id=" . mysqli_insert_id($conn) . "'>Ver tela</a>";
     } else {
       echo "<h2>Erro: </h2><p>" . $sql . "</p><p>" . $conn->error . "</p>";
     }

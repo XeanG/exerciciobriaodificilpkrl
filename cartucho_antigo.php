@@ -33,15 +33,14 @@
     <h1 class="text-center">Cartucho mais antigo</h1>
     <?php
     // Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
-
+    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
     // Consulta SQL para selecionar o cartucho mais antigo e a quem pertence
-    $sql = "SELECT c.id, c.nome_cartucho_cd, c.sistema, u.nome_completo, MIN(c.ano) AS ano FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id";
+    $sql = "SELECT c.id, c.nome_cartucho_cd, c.sistema, u.nome_completo, MIN(c.ano) AS ano FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id GROUP BY c.id ORDER BY MIN(c.ano);";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -52,13 +51,14 @@
             <th scope='col'>Nome do cartucho/CD</th>
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
-            <th scope='col'>Tela</th>
             <th scope='col'>Usuário</th>
+            <th scope='col'>Tela</th>
           </tr>
         </thead>
         <tbody>";
       while ($row = $result->fetch_assoc()) {
         echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+        break;
       }
       echo "</tbody></table>";
     } else {

@@ -32,13 +32,11 @@
     <h1 class="text-center">Login</h1>
     <form method="POST" action="login.php">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="username" class="text-end col-sm-2 col-form-label w-25">Usuário:</label>-->
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="username" name="username" placeholder="Usuário">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="password" class="text-end col-sm-2 col-form-label w-25">Senha:</label>-->
         <div class="col-sm-3 w-75 input-group">
           <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
           <span class="input-group-btn">
