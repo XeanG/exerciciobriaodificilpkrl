@@ -21,15 +21,22 @@
 <body>
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
+      <?php
+      $usr = $_SESSION['username'];
+      echo "<div class='navbar-nav py-0'>
+          <span class='nav-item'>$usr</span>
+          </div>";
+      ?>
       <div class="navbar-nav py-0">
         <a href="admin.php" class="nav-item nav-link active">Administrador</a>
         <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
         <a href="mostrar_cartuchos.php" class="nav-item nav-link">Cartuchos</a>
+        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
         <a href="logout.php" class="nav-item nav-link">Sair</a>
       </div>
     </nav>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
+  <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">
       <?php
       $sistema = $_POST["sistema"];
@@ -50,7 +57,7 @@
           echo $row["num_cartuchos"];
         }
       } else {
-        echo "Nenhum cartucho encontrado.";
+        echo "<h3 class='text-center'>Nenhum cartucho encontrado.</h3>";
       }
       ?> jogo(s) para
       <?php
@@ -70,18 +77,20 @@
             <th scope='col'>Nome do cartucho/CD</th>
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
-            <th scope='col'>Usuário</th>
             <th scope='col'>Tela</th>
+            <th scope='col'>Usuário</th>
           </tr>
         </thead>
         <tbody>";
       while ($row = $result->fetch_assoc()) {
-        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td></tr>";
+        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td><td>" . $row["nome_completo"] . "</td></tr>";
       }
       echo "</tbody></table>";
     } else {
-      echo "Nenhum cartucho encontrado.";
+      echo "<h3 class='text-center'>Nenhum cartucho encontrado.</h3>";
     }
     ?>
   </div>
 </body>
+
+</html>

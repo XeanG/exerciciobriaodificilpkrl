@@ -5,21 +5,6 @@
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `arquivos`
---
-DROP TABLE IF EXISTS arquivos;
-CREATE TABLE `arquivos` (
-  `id` int UNSIGNED NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `tamanho` int UNSIGNED DEFAULT NULL,
-  `imagem` longblob,
-  `tipo` varchar(255) DEFAULT NULL,
-  `id_cartucho` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `cartuchos`
 --
 DROP TABLE IF EXISTS cartuchos;
@@ -28,6 +13,7 @@ CREATE TABLE `cartuchos` (
   `nome_cartucho_cd` varchar(255) NOT NULL,
   `ano` int UNSIGNED NOT NULL,
   `sistema` varchar(255) NOT NULL,
+  `tela` blob NOT NULL,
   `id_usuario` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -86,13 +72,6 @@ INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `nome_de_usuario`, `senh
 --
 
 --
--- Índices para tabela `arquivos`
---
-ALTER TABLE `arquivos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `arquivos_ibfk_1` (`id_cartucho`);
-
---
 -- Índices para tabela `cartuchos`
 --
 ALTER TABLE `cartuchos`
@@ -116,12 +95,6 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de tabela `arquivos`
---
-ALTER TABLE `arquivos`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
 -- AUTO_INCREMENT de tabela `cartuchos`
 --
 ALTER TABLE `cartuchos`
@@ -142,12 +115,6 @@ ALTER TABLE `usuarios`
 --
 -- Restrições para despejos de tabelas
 --
-
---
--- Limitadores para a tabela `arquivos`
---
-ALTER TABLE `arquivos`
-  ADD CONSTRAINT `arquivos_ibfk_1` FOREIGN KEY (`id_cartucho`) REFERENCES `cartuchos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `cartuchos`

@@ -21,23 +21,29 @@
 <body>
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
-      <div class="navbar-nav py-0">
-        <?php
-        if ($_SESSION["admin"] == 1) {
-          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
+      <?php
+      $usr = $_SESSION['username'];
+      echo "<div class='navbar-nav py-0'>
+          <span class='nav-item'>$usr</span>
+          </div>
+          <div class='navbar-nav py-0'>";
+      if ($_SESSION["admin"] == 1) {
+        echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
           <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        } else {
-          echo "<a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
+      } else {
+        echo "<a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Seus cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        }
-        ?>
-      </div>
-    </nav>
+      }
+      ?>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
+  </nav>
+  </div>
+  <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Adicionar cartucho</h1>
     <form enctype="multipart/form-data" action="adicionar_cartucho.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">

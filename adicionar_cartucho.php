@@ -19,64 +19,67 @@
 <body>
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
-      <div class="navbar-nav py-0">
-        <?php
-        if ($_SESSION["admin"] == 1) {
-          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
+      <?php
+      $usr = $_SESSION['username'];
+      echo "<div class='navbar-nav py-0'>
+          <span class='nav-item'>$usr</span>
+          </div>
+          <div class='navbar-nav py-0'>";
+      if ($_SESSION["admin"] == 1) {
+        echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
           <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        } else {
-          echo "<a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
+      } else {
+        echo "<a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Seus cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        }
-        ?>
-      </div>
-    </nav>
+      }
+      ?>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50 h-75 d-flex align-items-evenly justify-items-center row">
+  </nav>
+  </div>
+  <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <?php
     $nome_cartucho_cd = $_POST['nome_cartucho_cd'];
     $ano = $_POST['ano'];
     $sistema = $_POST['sistema'];
     $imagem = $_FILES['tela']["tmp_name"];
-    $tamanho = $_FILES['tela']["size"];
-    $tipo = $_FILES['tela']["type"];
-    $nome = $_FILES['tela']["name"];
     $id_usuario = $_SESSION['id'];
-    $id_cartucho;
 
-    //Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
-    // Checa a conexão
-    if ($conn->connect_error) {
-      die("Conexão falhou: " . $conn->connect_error);
+    if ($imagem != NULL) {
+      $nomeFinal = time() . '.jpg';
+      if (move_uploaded_file($imagem, $nomeFinal)) {
+        $tamanhoImg = filesize($nomeFinal);
+
+        $mysqlImg = addslashes(fread(fopen($nomeFinal, "r"), $tamanhoImg));
+
+        //Conexão com o banco de dados
+        $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+        // Checa a conexão
+        if ($conn->connect_error) {
+          die("Conexão falhou: " . $conn->connect_error);
+        }
+
+        // Insere os dados no banco de dados
+        $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, tela, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$mysqlImg', '$id_usuario')";
+        $result = $conn->query($sql);
+
+        unlink($nomeFinal);
+
+        if ($result === true) {
+          echo "<h2>Novo cartucho adicionado com sucesso!</h2>";
+        } else {
+          echo "<h2>Erro: </h2><p>" . $sql . "</p><p>" . $conn->error . "</p>";
+        }
+
+        $conn->close();
+      }
     }
-
-    // Insere os dados no banco de dados
-    
-    $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$id_usuario')";
-    $result = $conn->query($sql);
-
-    $select_id = "SELECT MAX(id) AS id FROM cartuchos";
-    $select = $conn->query($select_id);
-
-    while ($row = $select->fetch_assoc()) {
-      $id_cartucho = $row['id'];
-    }
-
-    $query = "INSERT INTO arquivos (nome, tipo, tamanho, imagem, id_cartucho) VALUES ('$nome', '$tipo', '$tamanho', '$imagem', '$id_cartucho')";
-    $stmt = $conn->query($query);
-
-    if ($stmt === true && $result === true) {
-      echo "<h2>Novo cartucho adicionado com sucesso!</h2>";
-      echo "<a href='exibir_imagem.php?id=" . mysqli_insert_id($conn) . "'>Ver tela</a>";
-    } else {
-      echo "<h2>Erro: </h2><p>" . $sql . "</p><p>" . $conn->error . "</p>";
-    }
-
-    $conn->close();
     ?>
   </div>
 </body>
+
+</html>

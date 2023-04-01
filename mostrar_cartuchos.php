@@ -21,23 +21,29 @@
 <body>
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
-      <div class="navbar-nav py-0">
-        <?php
-        if ($_SESSION["admin"] == 1) {
-          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
+      <?php
+      $usr = $_SESSION['username'];
+      echo "<div class='navbar-nav py-0'>
+          <span class='nav-item'>$usr</span>
+          </div>
+          <div class='navbar-nav py-0'>";
+      if ($_SESSION["admin"] == 1) {
+        echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
           <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        } else {
-          echo "<a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
+      } else {
+        echo "<a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
           <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Seus cartuchos</a>
+          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
           <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-        }
-        ?>
-      </div>
-    </nav>
+      }
+      ?>
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle w-50">
+  </nav>
+  </div>
+  <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Cartuchos</h1>
     <?php
     $id_usuario = $_SESSION['id'];
@@ -60,7 +66,7 @@
     if ($result->num_rows > 0) {
       // Exibe cada cartucho em uma tabela
       if ($adm != '1') {
-      echo "<table class='table'>
+        echo "<table class='table'>
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
@@ -79,8 +85,8 @@
               <th scope='col'>Nome do cartucho/CD</th>
               <th scope='col'>Ano</th>
               <th scope='col'>Sistema</th>
-              <th scope='col'>Usuário</th>
               <th scope='col'>Tela</th>
+              <th scope='col'>Usuário</th>
             </tr>
           </thead>
           <tbody>";
@@ -89,12 +95,12 @@
         if ($adm != '1') {
           echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td></tr>";
         } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td><td>" . $row["nome_completo"] . "</td></tr>";
         }
       }
       echo "</tbody></table>";
     } else {
-      echo "Nenhum cartucho encontrado.";
+      echo "<h3 class='text-center'>Nenhum cartucho encontrado.</h3>";
     }
 
     $conn->close();
