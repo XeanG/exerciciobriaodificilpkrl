@@ -10,4 +10,12 @@ function mostra_senha(id) {
   } else {
     input.setAttribute('type', 'password');
   }
-}
+};
+
+function delete_cartucho(id) {
+  window.location.href = 'delete.php?id='.id;
+};
+
+function update_cartucho(id) {
+  window.location.href = 'update.php?id='.id;
+};
