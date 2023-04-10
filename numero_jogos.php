@@ -70,7 +70,7 @@
     $result = $conn->query($sql_cartuchos);
 
     if ($result->num_rows > 0) {
-      echo "<table class='table'>
+      echo "<table class='table table-bordered'>
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
@@ -79,11 +79,13 @@
             <th scope='col'>Sistema</th>
             <th scope='col'>Tela</th>
             <th scope='col'>Usuário</th>
+            <th scope='col'/>
+            <th scope='col'/>
           </tr>
         </thead>
         <tbody>";
       while ($row = $result->fetch_assoc()) {
-        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td><td>" . $row["nome_completo"] . "</td></tr>";
+        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td></tr>";
       }
       echo "</tbody></table>";
     } else {

@@ -48,6 +48,18 @@
     <?php
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];
+    $update = "window.location.href = 'update.php'";
+    function onclickdelete($id) {
+      $delete = "window.location.href = 'delete.php?id=".$id."'";
+      $string = 'onclick="' . $delete . '"';
+      return $string;
+    }
+    function onclickupdate($id) {
+      $update = "window.location.href = 'update.php?id=".$id."'";
+      $string = 'onclick="' . $update . '"';
+      return $string;
+    }
+    echo $onclick;
     // Conexão com o banco de dados
     $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
     // Checa a conexão
@@ -66,7 +78,7 @@
     if ($result->num_rows > 0) {
       // Exibe cada cartucho em uma tabela
       if ($adm != '1') {
-        echo "<table class='table'>
+        echo "<table class='table table-bordered'>
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
@@ -74,11 +86,13 @@
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
             <th scope='col'>Tela</th>
+            <th scope='col'/>
+            <th scope='col'/>
           </tr>
         </thead>
         <tbody>";
       } else {
-        echo "<table class='table'>
+        echo "<table class='table table-bordered'>
           <thead>
             <tr class='table-dark'>
               <th scope='col'>ID</th>
@@ -87,15 +101,17 @@
               <th scope='col'>Sistema</th>
               <th scope='col'>Tela</th>
               <th scope='col'>Usuário</th>
+              <th scope='col'/>
+              <th scope='col'/>
             </tr>
           </thead>
           <tbody>";
       }
       while ($row = $result->fetch_assoc()) {
         if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'></td><td><input class='btn btn-outline-danger' type='button' value='Delete'></td></tr>";
         } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver tela</a></td><td>" . $row["nome_completo"] . "</td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'".onclickupdate($row["id"])."></td><td><input class='btn btn-outline-danger' type='button' value='Delete'".onclickdelete($row["id"])."></td></tr>";
         }
       }
       echo "</tbody></table>";
@@ -106,6 +122,7 @@
     $conn->close();
     ?>
 
+    <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 

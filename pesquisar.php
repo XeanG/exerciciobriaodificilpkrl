@@ -64,12 +64,14 @@
       // Checa se há algum resultado
       if ($result->num_rows > 0) {
         // Exibe os resultados
-        echo "<table class='table'>
+        echo "<table class='table table-bordered'>
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
             <th scope='col'>Nome</th>
             <th scope='col'>Preço</th>
+            <th scope='col'/>
+            <th scope='col'/>
           </tr>
         </thead>
         <tbody>";
