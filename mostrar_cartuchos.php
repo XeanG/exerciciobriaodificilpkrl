@@ -109,7 +109,7 @@
       }
       while ($row = $result->fetch_assoc()) {
         if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'></td><td><input class='btn btn-outline-danger' type='button' value='Delete'></td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'".onclickupdate($row["id"])."></td><td><input class='btn btn-outline-danger' type='button' value='Delete'".onclickdelete($row["id"])."></td></tr>";
         } else {
           echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'".onclickupdate($row["id"])."></td><td><input class='btn btn-outline-danger' type='button' value='Delete'".onclickdelete($row["id"])."></td></tr>";
         }

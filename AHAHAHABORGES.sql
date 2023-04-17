@@ -20,6 +20,21 @@ CREATE TABLE `cartuchos` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `cartuchos`
+--
+DROP TABLE IF EXISTS deletados;
+CREATE TABLE `deletados` (
+  `id` int UNSIGNED NOT NULL,
+  `nome_cartucho_cd` varchar(255) NOT NULL,
+  `ano` int UNSIGNED NOT NULL,
+  `sistema` varchar(255) NOT NULL,
+  `tela` blob NOT NULL,
+  `id_usuario` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produtos`
 --
 DROP TABLE IF EXISTS produtos;
@@ -79,6 +94,12 @@ ALTER TABLE `cartuchos`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Índices para tabela `deletados`
+--
+ALTER TABLE `deletados`
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -121,4 +142,11 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `cartuchos`
   ADD CONSTRAINT `cartuchos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Limitadores para a tabela `deletados`
+--
+ALTER TABLE `deletados`
+  ADD CONSTRAINT `deletados_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
