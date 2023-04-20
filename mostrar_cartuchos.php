@@ -48,20 +48,20 @@
     <?php
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];
-    $update = "window.location.href = 'update.php'";
-    function onclickdelete($id) {
-      $delete = "window.location.href = 'delete.php?id=".$id."'";
+    function onclickdelete($id)
+    {
+      $delete = "window.location.href = 'delete.php?id=" . $id . "'";
       $string = 'onclick="' . $delete . '"';
       return $string;
     }
-    function onclickupdate($id) {
-      $update = "window.location.href = 'update.php?id=".$id."'";
+    function onclickupdate($id)
+    {
+      $update = "window.location.href = 'update.php?id=" . $id . "'";
       $string = 'onclick="' . $update . '"';
       return $string;
     }
-    echo $onclick;
     // Conexão com o banco de dados
-    $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+    $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
@@ -109,9 +109,9 @@
       }
       while ($row = $result->fetch_assoc()) {
         if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'".onclickupdate($row["id"])."></td><td><input class='btn btn-outline-danger' type='button' value='Delete'".onclickdelete($row["id"])."></td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'" . onclickupdate($row["id"]) . "></td><td><input class='btn btn-outline-danger' type='button' value='Delete'" . onclickdelete($row["id"]) . "></td></tr>";
         } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'".onclickupdate($row["id"])."></td><td><input class='btn btn-outline-danger' type='button' value='Delete'".onclickdelete($row["id"])."></td></tr>";
+          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'" . onclickupdate($row["id"]) . "></td><td><input class='btn btn-outline-danger' type='button' value='Delete'" . onclickdelete($row["id"]) . "></td></tr>";
         }
       }
       echo "</tbody></table>";

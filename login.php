@@ -12,7 +12,7 @@ $senha = $_POST["password"];
 
 if (!empty($user) && !empty($senha)) {
   // Conexão com o banco de dados
-  $conn = new mysqli("localhost", "root", "mysqluser", "AHAHAHABORGES");
+  $conn = new mysqli("localhost", "root", "", "AHAHAHABORGES");
   // Checa a conexão
   if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);

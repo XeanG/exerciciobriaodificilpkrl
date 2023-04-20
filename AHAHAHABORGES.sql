@@ -15,22 +15,21 @@ CREATE TABLE `cartuchos` (
   `sistema` varchar(255) NOT NULL,
   `tela` blob NOT NULL,
   `id_usuario` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `cartuchos`
 --
-DROP TABLE IF EXISTS deletados;
 CREATE TABLE `deletados` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `nome_cartucho_cd` varchar(255) NOT NULL,
-  `ano` int UNSIGNED NOT NULL,
+  `ano` int(10) UNSIGNED NOT NULL,
   `sistema` varchar(255) NOT NULL,
-  `tela` blob NOT NULL,
-  `id_usuario` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `dia` varchar(10) NOT NULL,
+  `id_usuario` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,7 +41,7 @@ CREATE TABLE `produtos` (
   `id` int UNSIGNED NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `preco` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `produtos`
@@ -73,7 +72,7 @@ CREATE TABLE `usuarios` (
   `nome_de_usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `adm` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -97,6 +96,7 @@ ALTER TABLE `cartuchos`
 -- Índices para tabela `deletados`
 --
 ALTER TABLE `deletados`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --

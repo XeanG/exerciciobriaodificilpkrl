@@ -38,6 +38,11 @@
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Painel do Administrador</h1>
+    <form action="historico.php" method="post">
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Histórico de exclusão">
+      </div>
+    </form>
     <form action="cartucho_antigo.php" method="post">
       <div class="d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Pesquisar cartucho mais antigo">
