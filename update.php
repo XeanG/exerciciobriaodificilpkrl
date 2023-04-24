@@ -44,7 +44,7 @@
   }
 
   // Conecta-se ao banco de dados
-  $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+  $conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
 
   // Obtém o ID da imagem a ser exibida
   $id = isset($_GET['id']) ? $_GET['id'] : null;

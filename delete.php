@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) == true) {
 }
 
 // Conecta-se ao banco de dados
-$conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+$conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 // Consulta tabela cartuchos

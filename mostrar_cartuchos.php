@@ -41,6 +41,7 @@
       }
       ?>
   </div>
+  <a href="gerar_pdf.php">Gerar</a>
   </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
@@ -61,7 +62,7 @@
       return $string;
     }
     // Conexão com o banco de dados
-    $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+    $conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);

@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) == true) {
 }
 
 // Conecta-se ao banco de dados
-$conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+$conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
 $id_cartucho = $_POST["id_cartucho"];
 $nome_cartucho = $_POST["nome_cartucho_cd"];
 $ano = $_POST["ano"];
