@@ -22,6 +22,7 @@ CREATE TABLE `cartuchos` (
 --
 -- Estrutura da tabela `cartuchos`
 --
+DROP TABLE IF EXISTS deletados;
 CREATE TABLE `deletados` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome_cartucho_cd` varchar(255) NOT NULL,
