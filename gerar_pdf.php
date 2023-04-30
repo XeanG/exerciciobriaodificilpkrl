@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 /*include_once './mostrar_cartuchos.php';*/
-$conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
+$conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
 $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id"; 
 $result = $conn->query($sql);
 $htmlpdf = "<!DOCTYPE html>

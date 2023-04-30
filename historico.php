@@ -44,7 +44,7 @@
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];
     // Conexão com o banco de dados
-    $conn = new mysqli('localhost', 'root', 'mysqluser', 'AHAHAHABORGES');
+    $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
     // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
