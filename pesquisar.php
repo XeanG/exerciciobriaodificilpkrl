@@ -71,8 +71,6 @@
             <th scope='col'>ID</th>
             <th scope='col'>Nome</th>
             <th scope='col'>Preço</th>
-            <th scope='col'/>
-            <th scope='col'/>
           </tr>
         </thead>
         <tbody>";

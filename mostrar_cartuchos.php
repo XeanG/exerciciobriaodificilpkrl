@@ -21,47 +21,35 @@
 <body>
   <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
-      <?php
-      $usr = $_SESSION['username'];
-      echo "<div class='navbar-nav py-0'>
-          <span class='nav-item'>$usr</span>
-          </div>
-          <div class='navbar-nav py-0'>
-          <div class='vr ms-2'></div>";
-      if ($_SESSION["admin"] == 1) {
-        echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
-          <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
-          <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Cartuchos</a>
-          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
-          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-      } else {
-        echo "<a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
-          <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Seus cartuchos</a>
-          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
-          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-      }
-      ?>
-  </div>
-  <a href="gerar_pdf.php">Gerar</a>
-  </nav>
+      <div class='navbar-nav py-0'>
+        <span class='nav-item'>
+          <?php
+          $usr = $_SESSION['username'];
+          echo "$usr";
+          ?>
+        </span>
+      </div>
+      <div class='navbar-nav py-0'>
+        <div class='vr ms-2'></div>
+        <?php
+        if ($_SESSION["admin"] == 1) {
+          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
+          ";
+        }
+        ?>
+        <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Cartuchos</a>
+        <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
+        <a href='logout.php' class='nav-item nav-link'>Sair</a>
+        <a href='gerar_pdf.php' class='nav-item nav-link'>Gerar</a>
+      </div>
+    </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Cartuchos</h1>
     <?php
-    $id_usuario = $_SESSION['id'];
-    $adm = $_SESSION['admin'];
-    function onclickdelete($id)
-    {
-      $delete = "window.location.href = 'delete.php?id=" . $id . "'";
-      $string = 'onclick="' . $delete . '"';
-      return $string;
-    }
-    function onclickupdate($id)
-    {
-      $update = "window.location.href = 'update.php?id=" . $id . "'";
-      $string = 'onclick="' . $update . '"';
-      return $string;
-    }
+    require "vars_functions.php";
+
     // Conexão com o banco de dados
     $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
     // Checa a conexão
