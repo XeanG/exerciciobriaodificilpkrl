@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 
 /**
@@ -16,10 +14,8 @@ use FontLib\Table\Table;
  *
  * @package php-font-lib
  */
-class loca extends Table
-{
-  protected function _parse()
-  {
+class loca extends Table {
+  protected function _parse() {
     $font   = $this->getFont();
     $offset = $font->pos();
 
@@ -55,8 +51,7 @@ class loca extends Table
     $this->data = $data;
   }
 
-  function _encode()
-  {
+  function _encode() {
     $font = $this->getFont();
     $data = $this->data;
 

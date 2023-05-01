@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -14,17 +13,14 @@ namespace FontLib;
  *
  * @package php-font-lib
  */
-class EncodingMap
-{
+class EncodingMap {
   private $f;
 
-  function __construct($file)
-  {
+  function __construct($file) {
     $this->f = fopen($file, "r");
   }
 
-  function parse()
-  {
+  function parse() {
     $map = array();
 
     while ($line = fgets($this->f)) {

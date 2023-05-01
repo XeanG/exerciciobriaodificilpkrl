@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -14,8 +13,7 @@ namespace FontLib\TrueType;
  *
  * @package php-font-lib
  */
-class Header extends \FontLib\Header
-{
+class Header extends \FontLib\Header {
   protected $def = array(
     "format"        => self::uint32,
     "numTables"     => self::uint16,
@@ -24,8 +22,7 @@ class Header extends \FontLib\Header
     "rangeShift"    => self::uint16,
   );
 
-  public function parse()
-  {
+  public function parse() {
     parent::parse();
 
     $format                   = $this->data["format"];

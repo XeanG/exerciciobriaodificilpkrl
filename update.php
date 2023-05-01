@@ -19,24 +19,25 @@
 </head>
 
 <body>
-<div class="container-xxl position-relative p-0">
-  <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
-    <?php
-    $usr = $_SESSION['username'];
-    echo "<div class='navbar-nav py-0'>
+  <div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center px-4 px-lg-5 py-3 py-lg-0 bg-white">
+      <?php
+      $usr = $_SESSION['username'];
+      echo "<div class='navbar-nav py-0'>
         <span class='nav-item'>$usr</span>
           </div>";
-    ?>
-    <div class="navbar-nav py-0">
-      <a href="admin.php" class="nav-item nav-link">Administrador</a>
-      <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
-      <a href="" class="nav-item nav-link active">Alterar cartuchos</a>
-      <a href="mostrar_cartuchos.php" class="nav-item nav-link">Cartuchos</a>
-      <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
-      <a href="logout.php" class="nav-item nav-link">Sair</a>
-    </div>
-  </nav>
-</div>
+      ?>
+      <div class="navbar-nav py-0">
+        <div class="vr ms-2"></div>
+        <a href="admin.php" class="nav-item nav-link">Administrador</a>
+        <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
+        <a href="" class="nav-item nav-link active">Alterar cartuchos</a>
+        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Cartuchos</a>
+        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
+        <a href="logout.php" class="nav-item nav-link">Sair</a>
+      </div>
+    </nav>
+  </div>
   <?php
   if (!isset($_SESSION['username']) == true) {
     session_destroy();
@@ -65,29 +66,29 @@
   }
   ?>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
-    <h1 class="text-center">Alterar 
+    <h1 class="text-center">Alterar
       <?php
       echo $nome_cartucho;
       ?></h1>
     <form enctype="multipart/form-data" action="alterar_cartucho.php" method="post">
-    <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="hidden" class="form-control" id="id_cartucho" name="id_cartucho" placeholder="ID" value="<?php echo $id_cartucho?>">
+          <input type="hidden" class="form-control" id="id_cartucho" name="id_cartucho" placeholder="ID" value="<?php echo $id_cartucho ?>">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD" value="<?php echo $nome_cartucho?>">
+          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD" value="<?php echo $nome_cartucho ?>">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="ano" name="ano" placeholder="Ano" value="<?php echo $ano?>">
+          <input type="text" class="form-control" id="ano" name="ano" placeholder="Ano" value="<?php echo $ano ?>">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema" value="<?php echo $sistema?>">
+          <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema" value="<?php echo $sistema ?>">
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">

@@ -30,4 +30,3 @@ $delete = "DELETE FROM cartuchos WHERE id = '$id'";
 $result = $conn->query($delete);
 
 header('Location: mostrar_cartuchos.php');
-?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -14,8 +13,7 @@ namespace FontLib\WOFF;
  *
  * @package php-font-lib
  */
-class Header extends \FontLib\TrueType\Header
-{
+class Header extends \FontLib\TrueType\Header {
   protected $def = array(
     "format"         => self::uint32,
     "flavor"         => self::uint32,

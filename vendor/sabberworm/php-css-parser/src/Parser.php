@@ -11,50 +11,50 @@ use Sabberworm\CSS\Parsing\SourceException;
  */
 class Parser
 {
-  /**
-   * @var ParserState
-   */
-  private $oParserState;
+    /**
+     * @var ParserState
+     */
+    private $oParserState;
 
-  /**
-   * @param string $sText
-   * @param Settings|null $oParserSettings
-   * @param int $iLineNo the line number (starting from 1, not from 0)
-   */
-  public function __construct($sText, Settings $oParserSettings = null, $iLineNo = 1)
-  {
-    if ($oParserSettings === null) {
-      $oParserSettings = Settings::create();
+    /**
+     * @param string $sText
+     * @param Settings|null $oParserSettings
+     * @param int $iLineNo the line number (starting from 1, not from 0)
+     */
+    public function __construct($sText, Settings $oParserSettings = null, $iLineNo = 1)
+    {
+        if ($oParserSettings === null) {
+            $oParserSettings = Settings::create();
+        }
+        $this->oParserState = new ParserState($sText, $oParserSettings, $iLineNo);
     }
-    $this->oParserState = new ParserState($sText, $oParserSettings, $iLineNo);
-  }
 
-  /**
-   * @param string $sCharset
-   *
-   * @return void
-   */
-  public function setCharset($sCharset)
-  {
-    $this->oParserState->setCharset($sCharset);
-  }
+    /**
+     * @param string $sCharset
+     *
+     * @return void
+     */
+    public function setCharset($sCharset)
+    {
+        $this->oParserState->setCharset($sCharset);
+    }
 
-  /**
-   * @return void
-   */
-  public function getCharset()
-  {
-    // Note: The `return` statement is missing here. This is a bug that needs to be fixed.
-    $this->oParserState->getCharset();
-  }
+    /**
+     * @return void
+     */
+    public function getCharset()
+    {
+        // Note: The `return` statement is missing here. This is a bug that needs to be fixed.
+        $this->oParserState->getCharset();
+    }
 
-  /**
-   * @return Document
-   *
-   * @throws SourceException
-   */
-  public function parse()
-  {
-    return Document::parse($this->oParserState);
-  }
+    /**
+     * @return Document
+     *
+     * @throws SourceException
+     */
+    public function parse()
+    {
+        return Document::parse($this->oParserState);
+    }
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 
 /**
@@ -16,8 +14,7 @@ use FontLib\Table\Table;
  *
  * @package php-font-lib
  */
-class os2 extends Table
-{
+class os2 extends Table {
   protected $def = array(
     "version"             => self::uint16,
     "xAvgCharWidth"       => self::int16,

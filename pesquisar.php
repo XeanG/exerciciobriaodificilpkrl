@@ -26,7 +26,8 @@
       echo "<div class='navbar-nav py-0'>
           <span class='nav-item'>$usr</span>
           </div>
-          <div class='navbar-nav py-0'>";
+          <div class='navbar-nav py-0'>
+          <div class='vr ms-2'></div>";
       if ($_SESSION["admin"] == 1) {
         echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
           <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>

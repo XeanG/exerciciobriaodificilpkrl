@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 
 /**
@@ -16,8 +14,7 @@ use FontLib\Table\Table;
  *
  * @package php-font-lib
  */
-class maxp extends Table
-{
+class maxp extends Table {
   protected $def = array(
     "version"               => self::Fixed,
     "numGlyphs"             => self::uint16,
@@ -36,8 +33,7 @@ class maxp extends Table
     "maxComponentDepth"     => self::uint16,
   );
 
-  function _encode()
-  {
+  function _encode() {
     $font                    = $this->getFont();
     $this->data["numGlyphs"] = count($font->getSubset());
 

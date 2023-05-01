@@ -49,9 +49,7 @@ body {
   counter-increment: page;
 }
 
-p,
-dl,
-multicol {
+p, dl, multicol {
   display: block;
   margin: 1em 0;
 }
@@ -61,8 +59,7 @@ dd {
   margin-left: 40px;
 }
 
-blockquote,
-figure {
+blockquote, figure {
   display: block;
   margin: 1em 40px;
 }
@@ -86,12 +83,7 @@ blockquote[type=cite] {
   border-width: thin;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   display: block;
   font-weight: bold;
 }
@@ -133,9 +125,7 @@ listing {
   margin: 1em 0;
 }
 
-plaintext,
-pre,
-xmp {
+plaintext, pre, xmp {
   display: block;
   font-family: fixed;
   white-space: pre;
@@ -151,8 +141,7 @@ table {
   margin-top: 0;
   margin-bottom: 0;
   text-indent: 0;
-  text-align: left;
-  /* quirk */
+  text-align: left; /* quirk */
 }
 
 table[border] {
@@ -170,9 +159,7 @@ table[border="0"] th {
 }
 
 /* make sure backgrounds are inherited in tables  -- see bug 4510 */
-td,
-th,
-tr {
+td, th, tr {
   background: inherit;
 }
 
@@ -211,7 +198,7 @@ tfoot {
 }
 
 /* To simulate tbody auto-insertion */
-table>tr {
+table > tr {
   vertical-align: middle;
 }
 
@@ -245,34 +232,23 @@ q::after {
   text-decoration: underline;
 }
 
-b,
-strong {
+b, strong {
   font-weight: bolder;
 }
 
-i,
-cite,
-em,
-var,
-dfn {
+i, cite, em, var, dfn {
   font-style: italic;
 }
 
-tt,
-code,
-kbd,
-samp {
+tt, code, kbd, samp {
   font-family: fixed;
 }
 
-u,
-ins {
+u, ins {
   text-decoration: underline;
 }
 
-s,
-strike,
-del {
+s, strike, del {
   text-decoration: line-through;
 }
 
@@ -307,16 +283,13 @@ mark {
 
 /* titles */
 
-abbr[title],
-acronym[title] {
+abbr[title], acronym[title] {
   text-decoration: dotted underline;
 }
 
 /* lists */
 
-ul,
-menu,
-dir {
+ul, menu, dir {
   display: block;
   list-style-type: disc;
   margin: 1em 0;
@@ -371,9 +344,7 @@ form {
   display: block;
 }
 
-input,
-button,
-select {
+input, button, select {
   display: inline-block;
   font-family: sans-serif;
 }
@@ -463,8 +434,8 @@ textarea {
 }
 
 select {
-  position: relative !important;
-  overflow: hidden !important;
+  position: relative!important;
+  overflow: hidden!important;
 }
 
 select::after {
@@ -494,7 +465,7 @@ fieldset {
   position: relative;
 }
 
-fieldset>legend {
+fieldset > legend {
   position: absolute;
   top: -0.6em;
   left: 0.75em;
@@ -531,8 +502,7 @@ br {
   display: -dompdf-br;
 }
 
-img,
-img_generated {
+img, img_generated {
   display: -dompdf-image !important;
 }
 
@@ -541,16 +511,8 @@ dompdf_generated {
 }
 
 /* hidden elements */
-area,
-base,
-basefont,
-head,
-meta,
-script,
-style,
-title,
-noembed,
-param {
+area, base, basefont, head, meta, script, style, title,
+noembed, param {
   display: none;
   -dompdf-keep: yes;
 }

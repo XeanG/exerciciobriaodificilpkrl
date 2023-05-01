@@ -1,9 +1,16 @@
 <?php
 
-require 'vendor/autoload.php';
-/*include_once './mostrar_cartuchos.php';*/
+require './vendor/autoload.php';
+
+header('Content-Type: text/html; charset=UTF-8');
+
+mb_internal_encoding('UTF-8');
+mb_http_output('UTF-8');
+mb_http_input('UTF-8');
+mb_regex_encoding('UTF-8');
+
 $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-$sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id"; 
+$sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
 $result = $conn->query($sql);
 $htmlpdf = "<!DOCTYPE html>
 <html lang='pt-BR'>
@@ -28,17 +35,15 @@ $htmlpdf = "<!DOCTYPE html>
   </tr>
 </thead>
 <tbody>";
-while($row = $result->fetch_assoc()){
-    $htmlpdf.="<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td></tr>";
+while ($row = $result->fetch_assoc()) {
+  $htmlpdf .= "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td></tr>";
 }
-$htmlpdf.= "</body></html>";
+$htmlpdf .= "</body></html>";
 
 use Dompdf\Dompdf;
-$dompdf = new Dompdf(['enable_remote' => true ]);
+
+$dompdf = new Dompdf(['enable_remote' => true]);
 $dompdf->loadHtml($htmlpdf);
-$dompdf->setPaper('A4','portrait');
+$dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 $dompdf->stream();
-
-
-?>

@@ -1,12 +1,10 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
-
 namespace FontLib\Table\Type;
 
 use FontLib\Font;
@@ -17,8 +15,7 @@ use FontLib\BinaryStream;
  *
  * @package php-font-lib
  */
-class nameRecord extends BinaryStream
-{
+class nameRecord extends BinaryStream {
   public $platformID;
   public $platformSpecificID;
   public $languageID;
@@ -36,25 +33,21 @@ class nameRecord extends BinaryStream
     "offset"             => self::uint16,
   );
 
-  public function map($data)
-  {
+  public function map($data) {
     foreach ($data as $key => $value) {
       $this->$key = $value;
     }
   }
 
-  public function getUTF8()
-  {
+  public function getUTF8() {
     return $this->string;
   }
 
-  public function getUTF16()
-  {
+  public function getUTF16() {
     return Font::UTF8ToUTF16($this->string);
   }
 
-  function __toString()
-  {
+  function __toString() {
     return $this->string;
   }
 }

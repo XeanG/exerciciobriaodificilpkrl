@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -19,8 +18,7 @@ use FontLib\Font;
  *
  * @property File $font
  */
-class Header extends \FontLib\Header
-{
+class Header extends \FontLib\Header {
   protected $def = array(
     "format"        => self::uint32,
     "numTables"     => self::uint16,
@@ -29,8 +27,7 @@ class Header extends \FontLib\Header
     "rangeShift"    => self::uint16,
   );
 
-  public function parse()
-  {
+  public function parse() {
     $font = $this->font;
 
     $this->data = $font->unpack(array(
@@ -102,8 +99,7 @@ class Header extends \FontLib\Header
     }
   }
 
-  private function readString($name)
-  {
+  private function readString($name) {
     $font = $this->font;
     $size = $font->readUInt16();
 
@@ -111,8 +107,7 @@ class Header extends \FontLib\Header
     $this->data[$name]         = Font::UTF16ToUTF8($font->read($size));
   }
 
-  public function encode()
-  {
+  public function encode() {
     //return $this->font->pack($this->def, $this->data);
   }
 }

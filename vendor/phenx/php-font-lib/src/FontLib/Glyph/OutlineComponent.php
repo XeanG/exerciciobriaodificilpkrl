@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -9,14 +8,12 @@
  */
 
 namespace FontLib\Glyph;
-
 /**
  * Glyph outline component
  *
  * @package php-font-lib
  */
-class OutlineComponent
-{
+class OutlineComponent {
   public $flags;
   public $glyphIndex;
   public $a, $b, $c, $d, $e, $f;
@@ -24,8 +21,7 @@ class OutlineComponent
   public $point_component;
   public $instructions;
 
-  function getMatrix()
-  {
+  function getMatrix() {
     return array(
       $this->a, $this->b,
       $this->c, $this->d,

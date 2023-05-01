@@ -4,12 +4,12 @@ namespace Sabberworm\CSS\Property;
 
 class KeyframeSelector extends Selector
 {
-  /**
-   * regexp for specificity calculations
-   *
-   * @var string
-   */
-  const SELECTOR_VALIDATION_RX = '/
+    /**
+     * regexp for specificity calculations
+     *
+     * @var string
+     */
+    const SELECTOR_VALIDATION_RX = '/
     ^(
         (?:
             [a-zA-Z0-9\x{00A0}-\x{FFFF}_^$|*="\'~\[\]()\-\s\.:#+>]* # any sequence of valid unescaped characters

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 use Exception;
 
@@ -17,8 +15,7 @@ use Exception;
  *
  * @package php-font-lib
  */
-class head extends Table
-{
+class head extends Table {
   protected $def = array(
     "tableVersion"       => self::Fixed,
     "fontRevision"       => self::Fixed,
@@ -39,8 +36,7 @@ class head extends Table
     "glyphDataFormat"    => self::int16,
   );
 
-  protected function _parse()
-  {
+  protected function _parse() {
     parent::_parse();
 
     if ($this->data["magicNumber"] != 0x5F0F3CF5) {

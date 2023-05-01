@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -15,8 +14,7 @@ namespace FontLib\Glyph;
  *
  * @package php-font-lib
  */
-class OutlineSimple extends Outline
-{
+class OutlineSimple extends Outline {
   const ON_CURVE       = 0x01;
   const X_SHORT_VECTOR = 0x02;
   const Y_SHORT_VECTOR = 0x04;
@@ -27,8 +25,7 @@ class OutlineSimple extends Outline
   public $instructions;
   public $points;
 
-  function parseData()
-  {
+  function parseData() {
     parent::parseData();
 
     if (!$this->size) {
@@ -81,10 +78,12 @@ class OutlineSimple extends Outline
         if ($flag & self::X_SHORT_VECTOR) {
           $x += $font->readUInt8();
         }
-      } else {
+      }
+      else {
         if ($flag & self::X_SHORT_VECTOR) {
           $x -= $font->readUInt8();
-        } else {
+        }
+        else {
           $x += $font->readInt16();
         }
       }
@@ -101,10 +100,12 @@ class OutlineSimple extends Outline
         if ($flag & self::Y_SHORT_VECTOR) {
           $y += $font->readUInt8();
         }
-      } else {
+      }
+      else {
         if ($flag & self::Y_SHORT_VECTOR) {
           $y -= $font->readUInt8();
-        } else {
+        }
+        else {
           $y += $font->readInt16();
         }
       }
@@ -115,15 +116,13 @@ class OutlineSimple extends Outline
     $this->points = $points;
   }
 
-  public function splitSVGPath($path)
-  {
+  public function splitSVGPath($path) {
     preg_match_all('/([a-z])|(-?\d+(?:\.\d+)?)/i', $path, $matches, PREG_PATTERN_ORDER);
 
     return $matches[0];
   }
 
-  public function makePoints($path)
-  {
+  public function makePoints($path) {
     $path = $this->splitSVGPath($path);
     $l    = count($path);
     $i    = 0;
@@ -132,7 +131,7 @@ class OutlineSimple extends Outline
 
     while ($i < $l) {
       switch ($path[$i]) {
-          // moveTo
+        // moveTo
         case "M":
           $points[] = array(
             "onCurve"      => true,
@@ -142,7 +141,7 @@ class OutlineSimple extends Outline
           );
           break;
 
-          // lineTo
+        // lineTo
         case "L":
           $points[] = array(
             "onCurve"      => true,
@@ -152,7 +151,7 @@ class OutlineSimple extends Outline
           );
           break;
 
-          // quadraticCurveTo
+        // quadraticCurveTo
         case "Q":
           $points[] = array(
             "onCurve"      => false,
@@ -168,8 +167,8 @@ class OutlineSimple extends Outline
           );
           break;
 
-          // closePath
-          /** @noinspection PhpMissingBreakStatementInspection */
+        // closePath
+        /** @noinspection PhpMissingBreakStatementInspection */
         case "z":
           $points[count($points) - 1]["endOfContour"] = true;
 
@@ -182,8 +181,7 @@ class OutlineSimple extends Outline
     return $points;
   }
 
-  function encode()
-  {
+  function encode() {
     if (empty($this->points)) {
       return parent::encode();
     }
@@ -191,8 +189,7 @@ class OutlineSimple extends Outline
     return $this->size = $this->encodePoints($this->points);
   }
 
-  public function encodePoints($points)
-  {
+  public function encodePoints($points) {
     $endPtsOfContours = array();
     $flags            = array();
     $coords_x         = array();
@@ -215,7 +212,8 @@ class OutlineSimple extends Outline
       // Simplified, we could do some optimizations
       if ($point["x"] == $last_x) {
         $flag |= self::THIS_X_IS_SAME;
-      } else {
+      }
+      else {
         $x          = intval($point["x"]);
         $xMin       = min($x, $xMin);
         $xMax       = max($x, $xMax);
@@ -225,7 +223,8 @@ class OutlineSimple extends Outline
       // Simplified, we could do some optimizations
       if ($point["y"] == $last_y) {
         $flag |= self::THIS_Y_IS_SAME;
-      } else {
+      }
+      else {
         $y          = intval($point["y"]);
         $yMin       = min($y, $yMin);
         $yMax       = max($y, $yMax);
@@ -255,8 +254,7 @@ class OutlineSimple extends Outline
     return $l;
   }
 
-  public function getSVGContours($points = null)
-  {
+  public function getSVGContours($points = null) {
     $path = "";
 
     if (!$points) {
@@ -284,8 +282,7 @@ class OutlineSimple extends Outline
     return $path;
   }
 
-  protected function getSVGPath($points, $startIndex, $count)
-  {
+  protected function getSVGPath($points, $startIndex, $count) {
     $offset = 0;
     $path   = "";
 
@@ -301,21 +298,25 @@ class OutlineSimple extends Outline
         if ($point_p1["onCurve"]) {
           $path .= "L{$point_p1['x']},{$point_p1['y']} ";
           $offset++;
-        } else {
+        }
+        else {
           $point_p2 = $points[$startIndex + ($offset + 2) % $count];
 
           if ($point_p2["onCurve"]) {
             $path .= "Q{$point_p1['x']},{$point_p1['y']},{$point_p2['x']},{$point_p2['y']} ";
-          } else {
+          }
+          else {
             $path .= "Q{$point_p1['x']},{$point_p1['y']}," . $this->midValue($point_p1['x'], $point_p2['x']) . "," . $this->midValue($point_p1['y'], $point_p2['y']) . " ";
           }
 
           $offset += 2;
         }
-      } else {
+      }
+      else {
         if ($point_p1["onCurve"]) {
           $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
-        } else {
+        }
+        else {
           $path .= "Q{$point['x']},{$point['y']}," . $this->midValue($point['x'], $point_p1['x']) . "," . $this->midValue($point['y'], $point_p1['y']) . " ";
         }
 
@@ -328,8 +329,7 @@ class OutlineSimple extends Outline
     return $path;
   }
 
-  function midValue($a, $b)
-  {
+  function midValue($a, $b) {
     return $a + ($b - $a) / 2;
   }
 }

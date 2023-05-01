@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -16,15 +15,12 @@ use FontLib\Table\DirectoryEntry;
  *
  * @package php-font-lib
  */
-class TableDirectoryEntry extends DirectoryEntry
-{
-  function __construct(File $font)
-  {
+class TableDirectoryEntry extends DirectoryEntry {
+  function __construct(File $font) {
     parent::__construct($font);
   }
 
-  function parse()
-  {
+  function parse() {
     parent::parse();
 
     $font           = $this->font;
@@ -34,3 +30,4 @@ class TableDirectoryEntry extends DirectoryEntry
     $this->entryLength += 12;
   }
 }
+

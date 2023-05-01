@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 
 /**
@@ -16,10 +14,8 @@ use FontLib\Table\Table;
  *
  * @package php-font-lib
  */
-class kern extends Table
-{
-  protected function _parse()
-  {
+class kern extends Table {
+  protected function _parse() {
     $font = $this->getFont();
 
     $data = $font->unpack(array(

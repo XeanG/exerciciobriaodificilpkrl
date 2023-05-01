@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -19,8 +18,7 @@ use OutOfBoundsException;
  *
  * @package php-font-lib
  */
-class Collection extends BinaryStream implements Iterator, Countable
-{
+class Collection extends BinaryStream implements Iterator, Countable {
   /**
    * Current iterator position.
    *
@@ -33,8 +31,7 @@ class Collection extends BinaryStream implements Iterator, Countable
   protected $version;
   protected $numFonts;
 
-  function parse()
-  {
+  function parse() {
     if (isset($this->numFonts)) {
       return;
     }
@@ -55,8 +52,7 @@ class Collection extends BinaryStream implements Iterator, Countable
    * @throws OutOfBoundsException
    * @return File
    */
-  function getFont($fontId)
-  {
+  function getFont($fontId) {
     $this->parse();
 
     if (!isset($this->collectionOffsets[$fontId])) {
@@ -74,35 +70,29 @@ class Collection extends BinaryStream implements Iterator, Countable
     return $this->collection[$fontId] = $font;
   }
 
-  function current()
-  {
+  function current() {
     return $this->getFont($this->position);
   }
 
-  function key()
-  {
+  function key() {
     return $this->position;
   }
 
-  function next()
-  {
+  function next() {
     return ++$this->position;
   }
 
-  function rewind()
-  {
+  function rewind() {
     $this->position = 0;
   }
 
-  function valid()
-  {
+  function valid() {
     $this->parse();
 
     return isset($this->collectionOffsets[$this->position]);
   }
 
-  function count()
-  {
+  function count() {
     $this->parse();
 
     return $this->numFonts;

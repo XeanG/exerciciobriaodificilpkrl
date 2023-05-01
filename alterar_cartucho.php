@@ -17,4 +17,3 @@ $sql = "UPDATE cartuchos SET nome_cartucho_cd = '$nome_cartucho', ano = '$ano', 
 $result = $conn->query($sql);
 
 header('Location: mostrar_cartuchos.php');
-?>

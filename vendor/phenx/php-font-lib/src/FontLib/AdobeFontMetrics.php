@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -17,8 +16,7 @@ use FontLib\TrueType\File;
  *
  * @package php-font-lib
  */
-class AdobeFontMetrics
-{
+class AdobeFontMetrics {
   private $f;
 
   /**
@@ -26,13 +24,11 @@ class AdobeFontMetrics
    */
   private $font;
 
-  function __construct(File $font)
-  {
+  function __construct(File $font) {
     $this->font = $font;
   }
 
-  function write($file, $encoding = null)
-  {
+  function write($file, $encoding = null) {
     $map_data = array();
 
     if ($encoding) {
@@ -81,7 +77,8 @@ class AdobeFontMetrics
       $this->addPair("FontHeightOffset", $font->normalizeFUnit($hhea["lineGap"]));
       $this->addPair("Ascender", $font->normalizeFUnit($hhea["ascent"]));
       $this->addPair("Descender", $font->normalizeFUnit($hhea["descent"]));
-    } else {
+    }
+    else {
       $this->addPair("FontHeightOffset", $font->normalizeFUnit($os2["typoLineGap"]));
       $this->addPair("Ascender", $font->normalizeFUnit($os2["typoAscender"]));
       $this->addPair("Descender", -abs($font->normalizeFUnit($os2["typoDescender"])));
@@ -123,7 +120,8 @@ class AdobeFontMetrics
             "N"  => $name,
           ));
         }
-      } else {
+      }
+      else {
         foreach ($glyphIndexArray as $c => $g) {
           if (!isset($hmtx[$g])) {
             $hmtx[$g] = $hmtx[0];
@@ -189,23 +187,19 @@ class AdobeFontMetrics
     $this->endSection("FontMetrics");
   }
 
-  function addLine($line)
-  {
+  function addLine($line) {
     fwrite($this->f, "$line\n");
   }
 
-  function addPair($key, $value)
-  {
+  function addPair($key, $value) {
     $this->addLine("$key $value");
   }
 
-  function addArray($key, $array)
-  {
+  function addArray($key, $array) {
     $this->addLine("$key " . implode(" ", $array));
   }
 
-  function addMetric($data)
-  {
+  function addMetric($data) {
     $array = array();
     foreach ($data as $key => $value) {
       $array[] = "$key $value";
@@ -213,13 +207,11 @@ class AdobeFontMetrics
     $this->addLine(implode(" ; ", $array));
   }
 
-  function startSection($name, $value = "")
-  {
+  function startSection($name, $value = "") {
     $this->addLine("Start$name $value");
   }
 
-  function endSection($name)
-  {
+  function endSection($name) {
     $this->addLine("End$name");
   }
 }

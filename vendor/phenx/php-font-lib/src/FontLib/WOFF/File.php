@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -18,10 +17,8 @@ use FontLib\Table\DirectoryEntry;
  *
  * @property TableDirectoryEntry[] $directory
  */
-class File extends \FontLib\TrueType\File
-{
-  function parseHeader()
-  {
+class File extends \FontLib\TrueType\File {
+  function parseHeader() {
     if (!empty($this->header)) {
       return;
     }
@@ -30,8 +27,7 @@ class File extends \FontLib\TrueType\File
     $this->header->parse();
   }
 
-  public function load($file)
-  {
+  public function load($file) {
     parent::load($file);
 
     $this->parseTableEntries();

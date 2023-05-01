@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 
 /**
@@ -16,8 +14,7 @@ use FontLib\Table\Table;
  *
  * @package php-font-lib
  */
-class hhea extends Table
-{
+class hhea extends Table {
   protected $def = array(
     "version"             => self::Fixed,
     "ascent"              => self::FWord,
@@ -38,8 +35,7 @@ class hhea extends Table
     "numOfLongHorMetrics" => self::uint16,
   );
 
-  function _encode()
-  {
+  function _encode() {
     $font                              = $this->getFont();
     $this->data["numOfLongHorMetrics"] = count($font->getSubset());
 

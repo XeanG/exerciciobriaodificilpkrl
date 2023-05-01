@@ -30,6 +30,7 @@
         ?>
       </div>
       <div class='navbar-nav py-0'>
+        <div class="vr ms-2"></div>
         <a href='admin.php' class='nav-item nav-link active'>Administrador</a>
         <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
         <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>

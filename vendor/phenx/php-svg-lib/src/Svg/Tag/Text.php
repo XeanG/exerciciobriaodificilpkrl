@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-svg-lib
  * @link    http://github.com/PhenX/php-svg-lib
@@ -13,61 +12,61 @@ use Svg\Style;
 
 class Text extends Shape
 {
-  protected $x = 0;
-  protected $y = 0;
-  protected $text = "";
+    protected $x = 0;
+    protected $y = 0;
+    protected $text = "";
 
-  public function start($attributes)
-  {
-    $height = $this->document->getHeight();
-    $this->y = $height;
+    public function start($attributes)
+    {
+        $height = $this->document->getHeight();
+        $this->y = $height;
 
-    if (isset($attributes['x'])) {
-      $width = $this->document->getWidth();
-      $this->x = $this->convertSize($attributes['x'], $width);
-    }
-    if (isset($attributes['y'])) {
-      $this->y = $height - $this->convertSize($attributes['y'], $height);
-    }
+        if (isset($attributes['x'])) {
+            $width = $this->document->getWidth();
+            $this->x = $this->convertSize($attributes['x'], $width);
+        }
+        if (isset($attributes['y'])) {
+            $this->y = $height - $this->convertSize($attributes['y'], $height);
+        }
 
-    $this->document->getSurface()->transform(1, 0, 0, -1, 0, $height);
-  }
-
-  public function end()
-  {
-    $surface = $this->document->getSurface();
-    $x = $this->x;
-    $y = $this->y;
-    $style = $surface->getStyle();
-    $surface->setFont($style->fontFamily, $style->fontStyle, $style->fontWeight);
-
-    switch ($style->textAnchor) {
-      case "middle":
-        $width = $surface->measureText($this->text);
-        $x -= $width / 2;
-        break;
-
-      case "end":
-        $width = $surface->measureText($this->text);
-        $x -= $width;
-        break;
+        $this->document->getSurface()->transform(1, 0, 0, -1, 0, $height);
     }
 
-    $surface->fillText($this->getText(), $x, $y);
-  }
+    public function end()
+    {
+        $surface = $this->document->getSurface();
+        $x = $this->x;
+        $y = $this->y;
+        $style = $surface->getStyle();
+        $surface->setFont($style->fontFamily, $style->fontStyle, $style->fontWeight);
 
-  protected function after()
-  {
-    $this->document->getSurface()->restore();
-  }
+        switch ($style->textAnchor) {
+            case "middle":
+                $width = $surface->measureText($this->text);
+                $x -= $width / 2;
+                break;
 
-  public function appendText($text)
-  {
-    $this->text .= $text;
-  }
+            case "end":
+                $width = $surface->measureText($this->text);
+                $x -= $width;
+                break;
+        }
 
-  public function getText()
-  {
-    return trim($this->text);
-  }
-}
+        $surface->fillText($this->getText(), $x, $y);
+    }
+
+    protected function after()
+    {
+        $this->document->getSurface()->restore();
+    }
+
+    public function appendText($text)
+    {
+        $this->text .= $text;
+    }
+
+    public function getText()
+    {
+        return trim($this->text);
+    }
+} 

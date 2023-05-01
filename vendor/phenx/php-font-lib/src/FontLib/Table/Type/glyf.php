@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -19,10 +18,8 @@ use FontLib\Glyph\OutlineSimple;
  * @package php-font-lib
  * @property Outline[] $data
  */
-class glyf extends Table
-{
-  protected function _parse()
-  {
+class glyf extends Table {
+  protected function _parse() {
     $font   = $this->getFont();
     $offset = $font->pos();
 
@@ -40,8 +37,7 @@ class glyf extends Table
     $this->data = $data;
   }
 
-  public function getGlyphIDs($gids = array())
-  {
+  public function getGlyphIDs($gids = array()) {
     $glyphIDs = array();
 
     foreach ($gids as $_gid) {
@@ -52,8 +48,7 @@ class glyf extends Table
     return array_unique(array_merge($gids, $glyphIDs));
   }
 
-  public function toHTML()
-  {
+  public function toHTML() {
     $max  = 160;
     $font = $this->getFont();
 
@@ -138,8 +133,7 @@ class glyf extends Table
   }
 
 
-  protected function _encode()
-  {
+  protected function _encode() {
     $font   = $this->getFont();
     $subset = $font->getSubset();
     $data   = $this->data;

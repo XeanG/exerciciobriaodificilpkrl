@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -7,7 +6,6 @@
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
  */
-
 namespace FontLib\Glyph;
 
 use FontLib\Table\Type\glyf;
@@ -19,8 +17,7 @@ use FontLib\BinaryStream;
  *
  * @package php-font-lib
  */
-class Outline extends BinaryStream
-{
+class Outline extends BinaryStream {
   /**
    * @var \FontLib\Table\Type\glyf
    */
@@ -48,14 +45,14 @@ class Outline extends BinaryStream
    *
    * @return Outline
    */
-  static function init(glyf $table, $offset, $size, BinaryStream $font)
-  {
+  static function init(glyf $table, $offset, $size, BinaryStream $font) {
     $font->seek($offset);
 
     if ($font->readInt16() > -1) {
       /** @var OutlineSimple $glyph */
       $glyph = new OutlineSimple($table, $offset, $size);
-    } else {
+    }
+    else {
       /** @var OutlineComposite $glyph */
       $glyph = new OutlineComposite($table, $offset, $size);
     }
@@ -68,27 +65,23 @@ class Outline extends BinaryStream
   /**
    * @return File
    */
-  function getFont()
-  {
+  function getFont() {
     return $this->table->getFont();
   }
 
-  function __construct(glyf $table, $offset = null, $size = null)
-  {
+  function __construct(glyf $table, $offset = null, $size = null) {
     $this->table  = $table;
     $this->offset = $offset;
     $this->size   = $size;
   }
 
-  function parse(BinaryStream $font)
-  {
+  function parse(BinaryStream $font) {
     $font->seek($this->offset);
 
-    $this->raw = $font->read($this->size);
+      $this->raw = $font->read($this->size);
   }
 
-  function parseData()
-  {
+  function parseData() {
     $font = $this->getFont();
     $font->seek($this->offset);
 
@@ -99,20 +92,18 @@ class Outline extends BinaryStream
     $this->yMax             = $font->readFWord();
   }
 
-  function encode()
-  {
+  function encode() {
     $font = $this->getFont();
 
     return $font->write($this->raw, mb_strlen((string) $this->raw, '8bit'));
   }
 
-  function getSVGContours()
-  {
+  function getSVGContours() {
     // Inherit
   }
 
-  function getGlyphIDs()
-  {
+  function getGlyphIDs() {
     return array();
   }
 }
+

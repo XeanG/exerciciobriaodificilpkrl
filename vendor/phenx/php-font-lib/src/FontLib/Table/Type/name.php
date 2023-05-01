@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -17,8 +16,7 @@ use FontLib\Font;
  *
  * @package php-font-lib
  */
-class name extends Table
-{
+class name extends Table {
   private static $header_format = array(
     "format"       => self::uint16,
     "count"        => self::uint16,
@@ -136,8 +134,7 @@ class name extends Table
     ),
   );
 
-  protected function _parse()
-  {
+  protected function _parse() {
     $font = $this->getFont();
 
     $tableOffset = $font->pos();
@@ -166,8 +163,7 @@ class name extends Table
     $this->data = $data;
   }
 
-  protected function _encode()
-  {
+  protected function _encode() {
     $font = $this->getFont();
 
     /** @var nameRecord[] $records */

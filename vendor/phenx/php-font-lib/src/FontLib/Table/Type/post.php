@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -8,7 +7,6 @@
  */
 
 namespace FontLib\Table\Type;
-
 use FontLib\Table\Table;
 use FontLib\TrueType\File;
 
@@ -17,8 +15,7 @@ use FontLib\TrueType\File;
  *
  * @package php-font-lib
  */
-class post extends Table
-{
+class post extends Table {
   protected $def = array(
     "format"             => self::Fixed,
     "italicAngle"        => self::Fixed,
@@ -31,8 +28,7 @@ class post extends Table
     "maxMemType1"        => self::uint32,
   );
 
-  protected function _parse()
-  {
+  protected function _parse() {
     $font = $this->getFont();
     $data = $font->unpack($this->def);
 
@@ -59,7 +55,8 @@ class post extends Table
         foreach ($glyphNameIndex as $g => $index) {
           if ($index < 258) {
             $names[$g] = File::$macCharNames[$index];
-          } else {
+          }
+          else {
             if (array_key_exists($index - 258, $namesPascal)) {
               $names[$g] = $namesPascal[$index - 258];
             }
@@ -86,8 +83,7 @@ class post extends Table
     $this->data = $data;
   }
 
-  function _encode()
-  {
+  function _encode() {
     $font           = $this->getFont();
     $data           = $this->data;
     $data["format"] = 3;

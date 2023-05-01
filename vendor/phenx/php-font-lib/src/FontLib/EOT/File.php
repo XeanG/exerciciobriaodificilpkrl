@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -14,8 +13,7 @@ namespace FontLib\EOT;
  *
  * @package php-font-lib
  */
-class File extends \FontLib\TrueType\File
-{
+class File extends \FontLib\TrueType\File {
   const TTEMBED_SUBSET                   = 0x00000001;
   const TTEMBED_TTCOMPRESSED             = 0x00000004;
   const TTEMBED_FAILIFVARIATIONSIMULATED = 0x00000010;
@@ -29,8 +27,7 @@ class File extends \FontLib\TrueType\File
    */
   public $header;
 
-  function parseHeader()
-  {
+  function parseHeader() {
     if (!empty($this->header)) {
       return;
     }
@@ -39,8 +36,7 @@ class File extends \FontLib\TrueType\File
     $this->header->parse();
   }
 
-  function parse()
-  {
+  function parse() {
     $this->parseHeader();
 
     $flags = $this->header->data["Flags"];
@@ -72,8 +68,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string
    */
-  public function read($n)
-  {
+  public function read($n) {
     if ($n < 1) {
       return "";
     }
@@ -84,8 +79,7 @@ class File extends \FontLib\TrueType\File
     return implode("", $chunks);
   }
 
-  public function readUInt32()
-  {
+  public function readUInt32() {
     $uint32 = parent::readUInt32();
 
     return $uint32 >> 16 & 0x0000FFFF | $uint32 << 16 & 0xFFFF0000;
@@ -96,8 +90,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontCopyright()
-  {
+  function getFontCopyright() {
     return null;
   }
 
@@ -106,8 +99,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontName()
-  {
+  function getFontName() {
     return $this->header->data["FamilyName"];
   }
 
@@ -116,8 +108,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontSubfamily()
-  {
+  function getFontSubfamily() {
     return $this->header->data["StyleName"];
   }
 
@@ -126,8 +117,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontSubfamilyID()
-  {
+  function getFontSubfamilyID() {
     return $this->header->data["StyleName"];
   }
 
@@ -136,8 +126,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontFullName()
-  {
+  function getFontFullName() {
     return $this->header->data["FullName"];
   }
 
@@ -146,8 +135,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontVersion()
-  {
+  function getFontVersion() {
     return $this->header->data["VersionName"];
   }
 
@@ -156,8 +144,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontWeight()
-  {
+  function getFontWeight() {
     return $this->header->data["Weight"];
   }
 
@@ -166,8 +153,7 @@ class File extends \FontLib\TrueType\File
    *
    * @return string|null
    */
-  function getFontPostscriptName()
-  {
+  function getFontPostscriptName() {
     return null;
   }
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package php-font-lib
  * @link    https://github.com/PhenX/php-font-lib
@@ -16,8 +15,7 @@ use FontLib\Exception\FontNotFoundException;
  *
  * @package php-font-lib
  */
-class Font
-{
+class Font {
   static $debug = false;
 
   /**
@@ -25,11 +23,10 @@ class Font
    *
    * @return TrueType\File|null $file
    */
-  public static function load($file)
-  {
-    if (!file_exists($file)) {
-      throw new FontNotFoundException($file);
-    }
+  public static function load($file) {
+      if(!file_exists($file)){
+          throw new FontNotFoundException($file);
+      }
 
     $header = file_get_contents($file, false, null, 0, 4);
     $class  = null;
@@ -53,7 +50,7 @@ class Font
         $class = "TrueType\\Collection";
         break;
 
-        // Unknown type or EOT
+      // Unknown type or EOT
       default:
         $magicNumber = file_get_contents($file, false, null, 34, 2);
 
@@ -75,21 +72,18 @@ class Font
     return null;
   }
 
-  static function d($str)
-  {
+  static function d($str) {
     if (!self::$debug) {
       return;
     }
     echo "$str\n";
   }
 
-  static function UTF16ToUTF8($str)
-  {
+  static function UTF16ToUTF8($str) {
     return mb_convert_encoding($str, "utf-8", "utf-16");
   }
 
-  static function UTF8ToUTF16($str)
-  {
+  static function UTF8ToUTF16($str) {
     return mb_convert_encoding($str, "utf-16", "utf-8");
   }
 }
