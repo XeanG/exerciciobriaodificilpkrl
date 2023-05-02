@@ -41,7 +41,7 @@
         <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>Cartuchos</a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
         <a href='logout.php' class='nav-item nav-link'>Sair</a>
-        <a href='gerar_pdf.php' class='nav-item nav-link'>Gerar</a>
+        <a href='gerar_cartuchos.php' class='nav-item nav-link'>Gerar</a>
       </div>
     </nav>
   </div>

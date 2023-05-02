@@ -19,6 +19,9 @@ mb_regex_encoding('UTF-8');
 
 $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
 $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
+if ($adm != '1') {
+  $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
+}
 $result = $conn->query($sql);
 $htmlpdf = "<!DOCTYPE html>
 <html lang='pt-BR'>
