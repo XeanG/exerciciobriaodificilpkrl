@@ -36,6 +36,7 @@
         <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
         <a href='logout.php' class='nav-item nav-link'>Sair</a>
+        <a href='gerar_historico.php' class='nav-item nav-link'>Gerar</a>
       </div>
     </nav>
   </div>

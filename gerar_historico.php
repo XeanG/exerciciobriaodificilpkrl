@@ -30,26 +30,26 @@ $htmlpdf = "<!DOCTYPE html>
   <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous'>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css'>
   <link rel='stylesheet' href='/css/style.css'>
-  <title>Cartuchos</title>
+  <title>Histórico de Exclusão</title>
   </head>
   <body>";
 // Checa se há algum resultado
 if ($result->num_rows > 0) {
   // Exibe cada cartucho em uma tabela
-  $htmlpdf .= "<table class='table table-bordered'>
-          <thead>
-            <tr class='table-dark'>
-              <th scope='col'>ID</th>
-              <th scope='col'>Nome do cartucho/CD</th>
-              <th scope='col'>Ano</th>
-              <th scope='col'>Sistema</th>
-              <th scope='col'>Usuário</th>
-              <th scope='col'>Data de exclusão</th>
+  $htmlpdf .= "<table class='table table-bordered' style='margin-bottom: 1rem; color: #212529; vertical-align: top; border-color: #dee2e6; box-sizing: border-box;'>
+          <thead style='vertical-align: bottom; border-color: inherit; border-style: solid; border-width: 1px; display: table-header-group; color: #212529;'>
+            <tr class='table-dark' style='border-width: 1px 1px; color: #fff; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>ID</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Nome do cartucho/CD</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Ano</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Sistema</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Usuário</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Data de exclusão</th>
             </tr>
           </thead>
-          <tbody>";
+          <tbody style='display: table-row-group; color: #212529; text-indent: initial; border-spacing: 2px;'>";
   while ($row = $result->fetch_assoc()) {
-    $htmlpdf .= "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td>" . $row["nome_completo"] . "</td><td>" . $row["dia"] . "</td></tr>";
+    $htmlpdf .= "<tr class='table-dark' style='border-width: 1px 1px; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'><th scope='row' style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["id"] . "</th><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_cartucho_cd"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["ano"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["sistema"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_completo"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["dia"] . "</td></tr>";
   }
   $htmlpdf .= "</tbody></table></body></html>";
 } else {
@@ -63,6 +63,6 @@ $options = new Options();
 $options->set('isRemoteEnabled', TRUE);
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($htmlpdf);
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
 $dompdf->stream();
