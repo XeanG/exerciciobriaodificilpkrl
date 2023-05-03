@@ -11,7 +11,7 @@
   <title>Adicionar Cartuchos</title>
   <?php
   session_start();
-  if (!isset($_SESSION['username']) == true) {
+  if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
     session_destroy();
     header('location:index.php');
   }
@@ -29,26 +29,23 @@
       ?>
       <div class='navbar-nav py-0'>
         <div class='vr ms-2'></div>
-        <?php
-        if ($_SESSION["admin"] == 1) {
-          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>";
-        }
-        ?>
-        <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
+        <a href='admin.php' class='nav-item nav-link'>Administrador</a>
         <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
           <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
         </a>
+        <a href='sistema.php' class='nav-item nav-link'>Adicionar sistemas</a>
+        <a href='mostrar_sistemas.php' class='nav-item nav-link active'>Sistemas</a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
         <a href='logout.php' class='nav-item nav-link'>Sair</a>
       </div>
     </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
-    <h1 class="text-center">Adicionar cartucho</h1>
-    <form enctype="multipart/form-data" action="adicionar_cartucho.php" method="post">
+    <h1 class="text-center">Adicionar sistema</h1>
+    <form enctype="multipart/form-data" action="adicionar_sistema.php" method="post">
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
+          <input type="text" class="form-control" id="nome_sistema" name="nome_sistema" placeholder="Nome do Sistema">
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
@@ -58,32 +55,7 @@
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <select class="form-select" id="sistema" name="sistema" placeholder="Sistema">
-            <option selected disabled value="">Sistema</option>
-            <?php
-            // Conexão com o banco de dados
-            $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-            // Checa a conexão
-            if ($conn->connect_error) {
-              die("Conexão falhou: " . $conn->connect_error);
-            }
-
-            // Consulta SQL para selecionar todos os sistemas
-            $sql = "SELECT * FROM sistemas";
-            $result = $conn->query($sql);
-
-            while ($row = $result->fetch_assoc()) {
-              echo "<option value='" . $row["id"] . "'>" . $row["nome"] . "</option>";
-            }
-
-            $conn->close();
-            ?>
-          </select>
-        </div>
-      </div>
-      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <div class="col-sm-10 w-75">
-          <input type="file" class="form-control" id="tela" name="tela" placeholder="Tela">
+          <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Empresa">
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">

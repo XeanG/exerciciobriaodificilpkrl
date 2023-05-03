@@ -44,13 +44,18 @@
         <input class="btn btn-outline-primary" type="submit" value="Histórico de exclusão">
       </div>
     </form>
+    <form action="mostrar_sistemas.php" method="post">
+      <div class="d-flex justify-content-evenly align-items-center">
+        <input class="btn btn-outline-primary" type="submit" value="Controle de Sistemas">
+      </div>
+    </form>
     <form action="cartucho_antigo.php" method="post">
       <div class="d-flex justify-content-evenly align-items-center">
         <input class="btn btn-outline-primary" type="submit" value="Pesquisar cartucho mais antigo">
       </div>
     </form>
     <form action="dono_cartucho.php" method="post">
-      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+      <div class="row mb-1 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="nome_cartucho_cd" name="nome_cartucho_cd" placeholder="Nome do Cartucho/CD">
         </div>
@@ -60,7 +65,7 @@
       </div>
     </form>
     <form action="numero_jogos.php" method="post">
-      <div class="row mb-3 d-flex justify-content-evenly align-items-center">
+      <div class="row mb-1 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
           <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema">
         </div>

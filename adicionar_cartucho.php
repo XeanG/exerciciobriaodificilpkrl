@@ -6,13 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/style.css">
   <title>Adicionar Cartuchos</title>
   <?php
-    session_start();
-    if (!isset($_SESSION['username']) == true) {
-      session_destroy();
-      header('location:index.php');
-    }
+  session_start();
+  if (!isset($_SESSION['username']) == true) {
+    session_destroy();
+    header('location:index.php');
+  }
   ?>
 </head>
 
@@ -23,32 +25,32 @@
       $usr = $_SESSION['username'];
       echo "<div class='navbar-nav py-0'>
           <span class='nav-item'>$usr</span>
-          </div>
-          <div class='navbar-nav py-0'>
-          <div class='vr ms-2'></div>";
-      if ($_SESSION["admin"] == 1) {
-        echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
-          <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
-          <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>
-          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
-          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-      } else {
-        echo "<a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
-          <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Seus cartuchos</a>
-          <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
-          <a href='logout.php' class='nav-item nav-link'>Sair</a>";
-      }
+          </div>";
       ?>
-  </div>
-  </nav>
+      <div class='navbar-nav py-0'>
+        <div class='vr ms-2'></div>
+        <?php
+        if ($_SESSION["admin"] == 1) {
+          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>";
+        }
+        ?>
+        <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+          <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
+        </a>
+        <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
+        <a href='logout.php' class='nav-item nav-link'>Sair</a>
+      </div>
+    </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <?php
     $nome_cartucho_cd = $_POST['nome_cartucho_cd'];
     $ano = $_POST['ano'];
-    $sistema = $_POST['sistema'];
+    $id_sistema = $_POST['sistema'];
     $imagem = $_FILES['tela']["tmp_name"];
     $id_usuario = $_SESSION['id'];
+    $sistema;
 
     if ($imagem != NULL) {
       $nomeFinal = time() . '.jpg';
@@ -64,8 +66,16 @@
           die("Conexão falhou: " . $conn->connect_error);
         }
 
+        // Consulta SQL para selecionar o nome do sistema
+        $sql = "SELECT nome FROM sistemas WHERE id = '$id_sistema'";
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+          $sistema = $row["nome"];
+        }
+
         // Insere os dados no banco de dados
-        $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, tela, id_usuario) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$mysqlImg', '$id_usuario')";
+        $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, tela, id_usuario, id_sistema) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$mysqlImg', '$id_usuario', '$id_sistema')";
         $result = $conn->query($sql);
 
         unlink($nomeFinal);

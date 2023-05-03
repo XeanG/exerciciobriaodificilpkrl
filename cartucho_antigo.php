@@ -29,11 +29,13 @@
       ?>
       <div class="navbar-nav py-0">
         <div class="vr ms-2"></div>
-        <a href="admin.php" class="nav-item nav-link active">Administrador</a>
-        <a href="cartucho.php" class="nav-item nav-link">Adicionar cartuchos</a>
-        <a href="mostrar_cartuchos.php" class="nav-item nav-link">Cartuchos</a>
-        <a href="pesquisa.php" class="nav-item nav-link">Pesquisa produto</a>
-        <a href="logout.php" class="nav-item nav-link">Sair</a>
+        <a href='admin.php' class='nav-item nav-link active'>Administrador</a>
+        <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+          <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
+        </a>
+        <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
+        <a href='logout.php' class='nav-item nav-link'>Sair</a>
       </div>
     </nav>
   </div>
@@ -56,7 +58,7 @@
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
-            <th scope='col'>Nome do cartucho/CD</th>
+            <th scope='col'>Cartucho/CD</th>
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
             <th scope='col'>Tela</th>

@@ -11,7 +11,7 @@
   <title>Cartuchos</title>
   <?php
   session_start();
-  if (!isset($_SESSION['username']) == true) {
+  if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
     session_destroy();
     header('location:index.php');
   }
@@ -31,24 +31,20 @@
       </div>
       <div class='navbar-nav py-0'>
         <div class='vr ms-2'></div>
-        <?php
-        if ($_SESSION["admin"] == 1) {
-          echo "<a href='admin.php' class='nav-item nav-link'>Administrador</a>
-          ";
-        }
-        ?>
+        <a href='admin.php' class='nav-item nav-link'>Administrador</a>
         <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
         <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
           <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
         </a>
+        <a href='sistema.php' class='nav-item nav-link'>Adicionar sistemas</a>
+        <a href='mostrar_sistemas.php' class='nav-item nav-link active'>Sistemas</a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
         <a href='logout.php' class='nav-item nav-link'>Sair</a>
-        <a href='gerar_cartuchos.php' class='nav-item nav-link'>Gerar</a>
       </div>
     </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
-    <h1 class="text-center">Cartuchos</h1>
+    <h1 class="text-center">Sistemas</h1>
     <?php
     require "vars_functions.php";
 
@@ -59,56 +55,31 @@
       die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Consulta SQL para selecionar todos os cartuchos
-    $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
-    if ($adm != '1') {
-      $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
-    }
+    // Consulta SQL para selecionar todos os sistemas
+    $sql = "SELECT * FROM sistemas";
     $result = $conn->query($sql);
 
     // Checa se há algum resultado
     if ($result->num_rows > 0) {
       // Exibe cada cartucho em uma tabela
-      if ($adm != '1') {
-        echo "<table class='table table-bordered'>
-        <thead>
-          <tr class='table-dark'>
-            <th scope='col'>ID</th>
-            <th scope='col'>Cartucho/CD</th>
-            <th scope='col'>Ano</th>
-            <th scope='col'>Sistema</th>
-            <th scope='col'>Tela</th>
-            <th scope='col'/>
-            <th scope='col'/>
-          </tr>
-        </thead>
-        <tbody>";
-      } else {
-        echo "<table class='table table-bordered'>
+      echo "<table class='table table-bordered'>
           <thead>
             <tr class='table-dark'>
               <th scope='col'>ID</th>
-              <th scope='col'>Cartucho/CD</th>
-              <th scope='col'>Ano</th>
               <th scope='col'>Sistema</th>
-              <th scope='col'>Tela</th>
-              <th scope='col'>Usuário</th>
+              <th scope='col'>Empresa</th>
+              <th scope='col'>Ano</th>
               <th scope='col'/>
               <th scope='col'/>
             </tr>
           </thead>
           <tbody>";
-      }
       while ($row = $result->fetch_assoc()) {
-        if ($adm != '1') {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td><input class='btn btn-outline-success' type='button' value='Update'" . onclickupdate($row["id"]) . "></td><td><input class='btn btn-outline-danger' type='button' value='Delete'" . onclickdelete($row["id"]) . "></td></tr>";
-        } else {
-          echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome_cartucho_cd"] . "</td><td>" . $row["ano"] . "</td><td>" . $row["sistema"] . "</td><td><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td>" . $row["nome_completo"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'" . onclickupdate($row["id"]) . "></td><td><input class='btn btn-outline-danger' type='button' value='Delete'" . onclickdelete($row["id"]) . "></td></tr>";
-        }
+        echo "<tr><th scope='row'>" . $row["id"] . "</th><td>" . $row["nome"] . "</td><td>" . $row["empresa"] . "</td><td>" . $row["ano"] . "</td><td><input class='btn btn-outline-success' type='button' value='Update'" . updatesistema($row["id"]) . "></td><td><input class='btn btn-outline-danger' type='button' value='Delete'" . deletesistema($row["id"]) . "></td></tr>";
       }
       echo "</tbody></table>";
     } else {
-      echo "<h3 class='text-center'>Nenhum cartucho encontrado.</h3>";
+      echo "<h3 class='text-center'>Nenhum sistema encontrado.</h3>";
     }
 
     $conn->close();

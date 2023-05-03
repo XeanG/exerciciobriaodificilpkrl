@@ -41,7 +41,7 @@ if ($adm != '1') {
         <thead style='vertical-align: bottom; border-color: inherit; border-style: solid; border-width: 1px; display: table-header-group; color: #212529;'>
           <tr class='table-dark' style='border-width: 1px 1px; color: #fff; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>ID</th>
-            <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Nome do cartucho/CD</th>
+            <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Cartucho/CD</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Ano</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Sistema</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Tela</th>
@@ -53,7 +53,7 @@ if ($adm != '1') {
           <thead style='vertical-align: bottom; border-color: inherit; border-style: solid; border-width: 1px; display: table-header-group; color: #212529;'>
             <tr class='table-dark' style='border-width: 1px 1px; color: #fff; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>ID</th>
-              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Nome do cartucho/CD</th>
+              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Cartucho/CD</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Ano</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Sistema</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Tela</th>

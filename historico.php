@@ -33,7 +33,9 @@
         <div class="vr ms-2"></div>
         <a href='admin.php' class='nav-item nav-link active'>Administrador</a>
         <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
-        <a href='mostrar_cartuchos.php' class='nav-item nav-link'>Cartuchos</a>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+          <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
+        </a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
         <a href='logout.php' class='nav-item nav-link'>Sair</a>
         <a href='gerar_historico.php' class='nav-item nav-link'>Gerar</a>
@@ -53,7 +55,7 @@
     }
 
     // Consulta SQL para selecionar todos os cartuchos
-    $sql = "SELECT d.id, d.nome_cartucho_cd, d.ano, d.sistema, d.dia, u.nome_completo FROM deletados d INNER JOIN usuarios u ON d.id_usuario = u.id ORDER BY d.id";
+    $sql = "SELECT d.id, d.nome_cartucho_cd, d.ano, d.sistema, d.dia, u.nome_completo FROM deletados d INNER JOIN usuarios u ON d.id_usuario = u.id ORDER BY d.dia ASC";
     $result = $conn->query($sql);
 
     // Checa se há algum resultado
@@ -63,7 +65,7 @@
           <thead>
             <tr class='table-dark'>
               <th scope='col'>ID</th>
-              <th scope='col'>Nome do cartucho/CD</th>
+              <th scope='col'>Cartucho/CD</th>
               <th scope='col'>Ano</th>
               <th scope='col'>Sistema</th>
               <th scope='col'>Usuário</th>

@@ -5,11 +5,3 @@ function mostra_senha(id) {
   icon.classList.toggle('bi-eye-slash');
   input.getAttribute('type') === 'password' ? input.setAttribute('type', 'text') : input.setAttribute('type', 'password');
 }
-
-function delete_cartucho(id) {
-  window.location.href = 'delete.php?id='.id;
-}
-
-function update_cartucho(id) {
-  window.location.href = 'update.php?id='.id;
-}

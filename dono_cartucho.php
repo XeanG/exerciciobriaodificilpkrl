@@ -65,7 +65,7 @@
         <thead>
           <tr class='table-dark'>
             <th scope='col'>ID</th>
-            <th scope='col'>Nome do cartucho/CD</th>
+            <th scope='col'>Cartucho/CD</th>
             <th scope='col'>Ano</th>
             <th scope='col'>Sistema</th>
             <th scope='col'>Tela</th>
