@@ -33,7 +33,7 @@
         <div class="vr ms-2"></div>
         <a href='admin.php' class='nav-item nav-link active'>Administrador</a>
         <a href='cartucho.php' class='nav-item nav-link'>Adicionar cartuchos</a>
-        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link'>
           <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
         </a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>
@@ -43,7 +43,7 @@
     </nav>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
-    <h1 class="text-center">Cartuchos</h1>
+    <h1 class="text-center">Histórico de exclusão</h1>
     <?php
     $id_usuario = $_SESSION['id'];
     $adm = $_SESSION['admin'];

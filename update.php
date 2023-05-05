@@ -88,7 +88,27 @@
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
         <div class="col-sm-10 w-75">
-          <input type="text" class="form-control" id="sistema" name="sistema" placeholder="Sistema" value="<?php echo $sistema ?>">
+          <select class="form-select" id="sistema" name="sistema" placeholder="Sistema">
+            <option selected disabled value="">Sistema</option>
+            <?php
+            // Conexão com o banco de dados
+            $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+            // Checa a conexão
+            if ($conn->connect_error) {
+              die("Conexão falhou: " . $conn->connect_error);
+            }
+
+            // Consulta SQL para selecionar todos os sistemas
+            $sql = "SELECT * FROM sistemas";
+            $result = $conn->query($sql);
+
+            while ($row = $result->fetch_assoc()) {
+              echo "<option value='" . $row["id"] . "'>" . $row["nome"] . "</option>";
+            }
+
+            $conn->close();
+            ?>
+          </select>
         </div>
       </div>
       <div class="mb-3 d-flex justify-content-evenly align-items-center">

@@ -30,7 +30,7 @@
       <div class='navbar-nav py-0'>
         <div class='vr ms-2'></div>
         <a href='admin.php' class='nav-item nav-link'>Administrador</a>
-        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link'>
           <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
         </a>
         <a href='sistema.php' class='nav-item nav-link'>Adicionar sistemas</a>

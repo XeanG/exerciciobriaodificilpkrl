@@ -65,4 +65,9 @@ $dompdf = new Dompdf($options);
 $dompdf->loadHtml($htmlpdf);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream();
+$output = $dompdf->output();
+file_put_contents("Histórico.pdf", $output);
+die("<script>
+  location.href = 'historico.php';
+  window.open('Histórico.pdf', '_blank').focus();
+</script>");

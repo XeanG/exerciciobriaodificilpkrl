@@ -35,7 +35,7 @@
         }
         ?>
         <a href='cartucho.php' class='nav-item nav-link active'>Adicionar cartuchos</a>
-        <a href='mostrar_cartuchos.php' class='nav-item nav-link active'>
+        <a href='mostrar_cartuchos.php' class='nav-item nav-link'>
           <?php echo $_SESSION["admin"] !== 1 ? "Seus cartuchos" : "Cartuchos" ?>
         </a>
         <a href='pesquisa.php' class='nav-item nav-link'>Pesquisa produto</a>

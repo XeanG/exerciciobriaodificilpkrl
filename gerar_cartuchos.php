@@ -80,4 +80,9 @@ $dompdf = new Dompdf($options);
 $dompdf->loadHtml($htmlpdf);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream();
+$output = $dompdf->output();
+file_put_contents("Cartuchos.pdf", $output);
+die("<script>
+  location.href = 'mostrar_cartuchos.php';
+  window.open('Cartuchos.pdf', '_blank').focus();
+</script>");
