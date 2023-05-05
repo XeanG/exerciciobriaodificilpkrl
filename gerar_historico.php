@@ -8,8 +8,6 @@ if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
 require './vendor/autoload.php';
 require 'vars_functions.php';
 
-$adm = $_SESSION['admin'];
-
 header('Content-Type: text/html; charset=UTF-8');
 
 mb_internal_encoding('UTF-8');
