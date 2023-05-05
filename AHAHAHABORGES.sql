@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `cartuchos`
 --
 
+DROP TABLE IF EXISTS cartuchos;
 CREATE TABLE `cartuchos` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome_cartucho_cd` varchar(255) NOT NULL,
@@ -50,6 +51,7 @@ INSERT INTO `cartuchos` (`id`, `nome_cartucho_cd`, `ano`, `sistema`, `tela`, `id
 -- Estrutura da tabela `deletados`
 --
 
+DROP TABLE IF EXISTS deletados;
 CREATE TABLE `deletados` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome_cartucho_cd` varchar(255) NOT NULL,
@@ -65,6 +67,7 @@ CREATE TABLE `deletados` (
 -- Estrutura da tabela `produtos`
 --
 
+DROP TABLE IF EXISTS produtos;
 CREATE TABLE `produtos` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
@@ -93,6 +96,7 @@ INSERT INTO `produtos` (`id`, `nome`, `preco`) VALUES
 -- Estrutura da tabela `sistemas`
 --
 
+DROP TABLE IF EXISTS sistemas;
 CREATE TABLE `sistemas` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -114,6 +118,7 @@ INSERT INTO `sistemas` (`id`, `nome`, `empresa`, `ano`) VALUES
 -- Estrutura da tabela `usuarios`
 --
 
+DROP TABLE IF EXISTS usuarios;
 CREATE TABLE `usuarios` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome_completo` varchar(255) NOT NULL,
@@ -177,25 +182,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cartuchos`
 --
 ALTER TABLE `cartuchos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de tabela `sistemas`
 --
 ALTER TABLE `sistemas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restrições para despejos de tabelas
