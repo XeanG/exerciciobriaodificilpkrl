@@ -41,40 +41,42 @@ $htmlpdf = "<!DOCTYPE html>
   <title>Cartuchos</title>
   </head>
   <body>";
-if ($adm != '1') {
-  $htmlpdf .= "<table class='table table-bordered' style='margin-bottom: 1rem; color: #212529; vertical-align: top; border-color: #dee2e6; box-sizing: border-box;'>
+if ($result->num_rows > 0) {
+  if ($adm != '1') {
+    $htmlpdf .= "<table class='table table-bordered' style='margin-bottom: 1rem; color: #212529; vertical-align: top; border-color: #dee2e6; box-sizing: border-box;'>
         <thead style='vertical-align: bottom; border-color: inherit; border-style: solid; border-width: 1px; display: table-header-group; color: #212529;'>
           <tr class='table-dark' style='border-width: 1px 1px; color: #fff; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>ID</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Cartucho/CD</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Ano</th>
             <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Sistema</th>
-            <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Tela</th>
           </tr>
         </thead>
         <tbody>";
-} else {
-  $htmlpdf .= "<table class='table table-bordered' style='margin-bottom: 1rem; color: #212529; vertical-align: top; border-color: #dee2e6; box-sizing: border-box;'>
+  } else {
+    $htmlpdf .= "<table class='table table-bordered' style='margin-bottom: 1rem; color: #212529; vertical-align: top; border-color: #dee2e6; box-sizing: border-box;'>
           <thead style='vertical-align: bottom; border-color: inherit; border-style: solid; border-width: 1px; display: table-header-group; color: #212529;'>
             <tr class='table-dark' style='border-width: 1px 1px; color: #fff; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>ID</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Cartucho/CD</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Ano</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Sistema</th>
-              <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Tela</th>
               <th scope='col' style='background-color: #212529; color: #fff; border-width: 1px 1px; padding: 0.5rem 0.5rem;'>Usuário</th>
             </tr>
           </thead>
           <tbody>";
-}
-while ($row = $result->fetch_assoc()) {
-  if ($adm != '1') {
-    $htmlpdf .= "<tr class='table-dark' style='border-width: 1px 1px; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'><th scope='row' style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["id"] . "</th><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_cartucho_cd"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["ano"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["sistema"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td></tr>";
-  } else {
-    $htmlpdf .= "<tr class='table-dark' style='border-width: 1px 1px; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'><th scope='row' style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["id"] . "</th><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_cartucho_cd"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["ano"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["sistema"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'><a href='exibir_imagem.php?id=" . $row["id"] . "'>Ver</a></td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_completo"] . "</td></tr>";
   }
+  while ($row = $result->fetch_assoc()) {
+    if ($adm != '1') {
+      $htmlpdf .= "<tr class='table-dark' style='border-width: 1px 1px; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'><th scope='row' style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["id"] . "</th><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_cartucho_cd"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["ano"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["sistema"] . "</td></tr>";
+    } else {
+      $htmlpdf .= "<tr class='table-dark' style='border-width: 1px 1px; border-color: #373b3e; display: table-row; vertical-align: inherit; text-indent: initial; border-spacing: 2px;'><th scope='row' style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["id"] . "</th><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_cartucho_cd"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["ano"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["sistema"] . "</td><td style='border-width: 1px 1px; padding: 0.5rem 0.5rem;'>" . $row["nome_completo"] . "</td></tr>";
+    }
+  }
+  $htmlpdf .= "</tbody></table></body></html>";
+} else {
+  $htmlpdf .= "<h3 class='text-center'>Nenhum cartucho encontrado.</h3></body></html>";
 }
-$htmlpdf .= "</tbody></table></body></html>";
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

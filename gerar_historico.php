@@ -8,6 +8,8 @@ if (!isset($_SESSION['username']) == true || $_SESSION["admin"] == 0) {
 require './vendor/autoload.php';
 require 'vars_functions.php';
 
+$adm = $_SESSION['admin'];
+
 header('Content-Type: text/html; charset=UTF-8');
 
 mb_internal_encoding('UTF-8');
@@ -15,8 +17,13 @@ mb_http_output('UTF-8');
 mb_regex_encoding('UTF-8');
 
 $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+if ($conn->connect_error) {
+  die("Conexão falhou: " . $conn->connect_error);
+}
+
 $sql = "SELECT d.id, d.nome_cartucho_cd, d.ano, d.sistema, d.dia, u.nome_completo FROM deletados d INNER JOIN usuarios u ON d.id_usuario = u.id ORDER BY d.dia ASC";
 $result = $conn->query($sql);
+
 $htmlpdf = "<!DOCTYPE html>
 <html lang='pt-BR'>
 
