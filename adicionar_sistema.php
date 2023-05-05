@@ -47,14 +47,11 @@
     $ano = $_POST['ano'];
     $empresa = $_POST['empresa'];
 
-    //Conexão com o banco de dados
     $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-    // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Insere os dados no banco de dados
     $sql = "INSERT INTO sistemas (nome, ano, empresa) VALUES ('$nome', '$ano', '$empresa')";
     $result = $conn->query($sql);
 

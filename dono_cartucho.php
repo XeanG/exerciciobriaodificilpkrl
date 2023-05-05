@@ -49,14 +49,11 @@
     <?php
     $cartucho = $_POST["nome_cartucho_cd"];
 
-    // Conexão com o banco de dados
     $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-    // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Consulta SQL para selecionar quem possui o cartucho
     $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE c.nome_cartucho_cd = '$cartucho'";
     $result = $conn->query($sql);
 

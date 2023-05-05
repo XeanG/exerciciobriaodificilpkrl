@@ -42,14 +42,11 @@
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Cartucho mais antigo</h1>
     <?php
-    // Conexão com o banco de dados
     $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-    // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Consulta SQL para selecionar o cartucho mais antigo e a quem pertence
     $sql = "SELECT c.id, c.nome_cartucho_cd, c.sistema, u.nome_completo, MIN(c.ano) AS ano FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id GROUP BY c.id ORDER BY MIN(c.ano);";
     $result = $conn->query($sql);
 

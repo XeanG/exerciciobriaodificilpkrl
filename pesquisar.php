@@ -50,20 +50,14 @@
     $nome = $_POST["nome"];
 
     if (!empty($preco) && !empty($nome)) {
-      // Conexão com o banco de dados
       $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-      // Checa a conexão
       if ($conn->connect_error) {
         die("Conexão falhou: " . $conn->connect_error);
       }
 
-      // Executa a consulta SQL
       $sql = "SELECT * FROM produtos WHERE preco > $preco AND nome LIKE '$nome%'";
       $result = $conn->query($sql);
-
-      // Checa se há algum resultado
       if ($result->num_rows > 0) {
-        // Exibe os resultados
         echo "<table class='table table-bordered'>
         <thead>
           <tr class='table-dark'>
@@ -81,7 +75,6 @@
         echo "<h3 class='text-center'>Nenhum produto encontrado.</h3>";
       }
 
-      // Fecha a conexão com o banco de dados
       $conn->close();
     } else {
       echo "<h3 class='text-center'>Preço ou nome vazios.</h3>";

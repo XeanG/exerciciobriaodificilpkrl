@@ -59,14 +59,11 @@
 
         $mysqlImg = addslashes(fread(fopen($nomeFinal, "r"), $tamanhoImg));
 
-        //Conexão com o banco de dados
         $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-        // Checa a conexão
         if ($conn->connect_error) {
           die("Conexão falhou: " . $conn->connect_error);
         }
 
-        // Consulta SQL para selecionar o nome do sistema
         $sql = "SELECT nome FROM sistemas WHERE id = '$id_sistema'";
         $result = $conn->query($sql);
 
@@ -74,7 +71,6 @@
           $sistema = $row["nome"];
         }
 
-        // Insere os dados no banco de dados
         $sql = "INSERT INTO cartuchos (nome_cartucho_cd, ano, sistema, tela, id_usuario, id_sistema) VALUES ('$nome_cartucho_cd', '$ano', '$sistema', '$mysqlImg', '$id_usuario', '$id_sistema')";
         $result = $conn->query($sql);
 

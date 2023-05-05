@@ -45,22 +45,15 @@
   <div class="container position-absolute top-50 start-50 translate-middle w-75 h-75 d-flex align-items-evenly justify-items-center row">
     <h1 class="text-center">Histórico de exclusão</h1>
     <?php
-    $id_usuario = $_SESSION['id'];
-    $adm = $_SESSION['admin'];
-    // Conexão com o banco de dados
     $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-    // Checa a conexão
     if ($conn->connect_error) {
       die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Consulta SQL para selecionar todos os cartuchos
     $sql = "SELECT d.id, d.nome_cartucho_cd, d.ano, d.sistema, d.dia, u.nome_completo FROM deletados d INNER JOIN usuarios u ON d.id_usuario = u.id ORDER BY d.dia ASC";
     $result = $conn->query($sql);
 
-    // Checa se há algum resultado
     if ($result->num_rows > 0) {
-      // Exibe cada cartucho em uma tabela
       echo "<table class='table table-bordered'>
           <thead>
             <tr class='table-dark'>

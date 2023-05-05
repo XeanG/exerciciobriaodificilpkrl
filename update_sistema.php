@@ -41,13 +41,13 @@
     </nav>
   </div>
   <?php
-  // Conecta-se ao banco de dados
   $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+  if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+  }
 
-  // Obtém o ID da imagem a ser exibida
   $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-  // Executa a consulta SQL
   $sql = "SELECT s.id, s.nome, s.empresa, s.ano FROM sistemas s WHERE s.id = '$id'";
   $result = $conn->query($sql);
   $id;

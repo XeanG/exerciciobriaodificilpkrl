@@ -18,11 +18,16 @@ mb_http_output('UTF-8');
 mb_regex_encoding('UTF-8');
 
 $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+if ($conn->connect_error) {
+  die("Conexão falhou: " . $conn->connect_error);
+}
+
 $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
 if ($adm != '1') {
   $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE u.id = '$id_usuario' ORDER BY c.id";
 }
 $result = $conn->query($sql);
+
 $htmlpdf = "<!DOCTYPE html>
 <html lang='pt-BR'>
 
@@ -81,8 +86,8 @@ $dompdf->loadHtml($htmlpdf);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
 $output = $dompdf->output();
-file_put_contents("Cartuchos.pdf", $output);
+file_put_contents("Cartuchos_" . $_SESSION['username'] . ".pdf", $output);
 die("<script>
   location.href = 'mostrar_cartuchos.php';
-  window.open('Cartuchos.pdf', '_blank').focus();
+  window.open('Cartuchos_" . $_SESSION['username'] . ".pdf', '_blank').focus();
 </script>");

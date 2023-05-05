@@ -44,13 +44,13 @@
     header('location:index.php');
   }
 
-  // Conecta-se ao banco de dados
   $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+  if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+  }
 
-  // Obtém o ID da imagem a ser exibida
   $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-  // Executa a consulta SQL
   $sql = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id ORDER BY c.id";
   $result = $conn->query($sql);
   $id_cartucho;
@@ -91,14 +91,11 @@
           <select class="form-select" id="sistema" name="sistema" placeholder="Sistema">
             <option selected disabled value="">Sistema</option>
             <?php
-            // Conexão com o banco de dados
             $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-            // Checa a conexão
             if ($conn->connect_error) {
               die("Conexão falhou: " . $conn->connect_error);
             }
 
-            // Consulta SQL para selecionar todos os sistemas
             $sql = "SELECT * FROM sistemas";
             $result = $conn->query($sql);
 

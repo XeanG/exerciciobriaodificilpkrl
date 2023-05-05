@@ -47,7 +47,6 @@
         </div>
       </div>
       <div class="row mb-3 d-flex justify-content-evenly align-items-center">
-        <!--<label for="senha" class="text-end col-sm-2 col-form-label w-25">Senha:</label>-->
         <div class="col-sm-10 w-75 input-group">
           <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
           <span class="input-group-btn">

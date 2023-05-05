@@ -42,14 +42,11 @@
       <?php
       $sistema = $_POST["sistema"];
 
-      // Conexão com o banco de dados
       $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
-      // Checa a conexão
       if ($conn->connect_error) {
         die("Conexão falhou: " . $conn->connect_error);
       }
 
-      // Consulta SQL para contar o número de cartuchos para uma plataforma específica
       $sql = "SELECT COUNT(*) AS num_cartuchos FROM cartuchos WHERE sistema = '$sistema'";
       $result = $conn->query($sql);
 
@@ -66,7 +63,6 @@
       ?>
     </h1>
     <?php
-    // Consulta SQL para selecionar os cartuchos da plataforma
     $sql_cartuchos = "SELECT c.id, c.nome_cartucho_cd, c.ano, c.sistema, u.nome_completo FROM cartuchos c INNER JOIN usuarios u ON c.id_usuario = u.id WHERE c.sistema = '$sistema'";
     $result = $conn->query($sql_cartuchos);
 

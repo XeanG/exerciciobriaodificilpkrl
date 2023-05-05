@@ -5,15 +5,16 @@ if (!isset($_SESSION['username']) == true) {
   header('location:index.php');
 }
 
-// Conecta-se ao banco de dados
 $conn = new mysqli('localhost', 'root', '', 'AHAHAHABORGES');
+if ($conn->connect_error) {
+  die("Conexão falhou: " . $conn->connect_error);
+}
+
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-// Consulta tabela cartuchos
 $select = "SELECT * FROM cartuchos WHERE id = '$id'";
 $result = $conn->query($select);
 
-// Insere no histórico
 while ($row = $result->fetch_assoc()) {
   $nome = $row['nome_cartucho_cd'];
   $ano = $row['ano'];
@@ -25,7 +26,6 @@ while ($row = $result->fetch_assoc()) {
   $query = $conn->query($insert);
 }
 
-// Deleta o cartucho
 $delete = "DELETE FROM cartuchos WHERE id = '$id'";
 $result = $conn->query($delete);
 
